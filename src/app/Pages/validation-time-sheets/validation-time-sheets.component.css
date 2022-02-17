@@ -1,0 +1,27 @@
+
+  .center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+#title{
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 100;
+}
+
+
+.container{
+    width: 250%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+.box{
+width: 50%;
+margin: 20px;
+
+}
+.btn{margin-top: 35px;}

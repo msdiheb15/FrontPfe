@@ -1,0 +1,16 @@
+table {
+    width: 50%;
+    margin-top: 20px;
+  }
+  .center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .btn{
+      margin: 10px;
+  }
+#title{
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 100;
+}

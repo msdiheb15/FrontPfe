@@ -1,0 +1,61 @@
+<div class="container-fluid page">
+  <div class="page__content shadow  position-relative">
+    <div class="d-flex flex-row">
+      <img class="p-1" height="100px" width="150px" src='../../../assets/calendar.jpg' />
+    </div>
+    <div class="p-2 text-white bg-primary d-flex justify-content-center">Consulter et Saisir TimeSheet</div>
+    <form>
+      <div class="form-group p-2">
+        <label for="date-input">Journeé:</label>
+        <input type="date" class="form-control" id="date-input" aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+      <button type="button" (click)="toogleTag()" class="btn btn-primary ml-3">Ajouter</button>
+      <button type="button"  class="btn btn-success ml-3">Acceder</button>
+      <hr>
+    </form>
+    <form *ngIf="showMe">
+      <div class="form-row pt-5">
+        <div class="form-group col-md-2">
+          <label>Heure Debut</label>
+          <input type="time" class="form-control">
+        </div>
+        <div class="form-group col-md-2">
+          <label>Heure Fin</label>
+          <input type="time" class="form-control">
+        </div>
+        <div class="form-group col-md-2">
+          <label>Tache</label>
+          <select class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label>Nom project</label>
+          <select class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label>Description</label>
+          <input class="form-control" placeholder="Description Timesheet">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputPassword4">&nbsp; &nbsp; &nbsp; &nbsp; </label>
+          <div class="pb-5">
+            
+            <button class="btn-a  "><i class="fas fa-plus-circle"></i></button>
+            <button class="btn-b btn-a"><i class="fas fa-save"></i></button>
+            <button class="btn-c btn-a"><i class="fa fa-trash"></i></button>
+
+          </div>
+ 
+        </div>
+      </div>
+    </form>
+
+
+  </div>
+
+</div>

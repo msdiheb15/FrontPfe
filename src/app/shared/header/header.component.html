@@ -1,0 +1,43 @@
+  <!-- Modal -->
+  <div  data-backdrop="false" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Déconnexion</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Voulez-vous vraiment déconnecter ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+          <button type="button" class="btn btn-danger">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<mat-toolbar>
+  <mat-toolbar-row class="justify-content-between">
+    <button class="button-menu"mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="row mr-2 ml-auto">
+      <ul class="row m-0 align-items-center">
+        <li>
+          
+          <mat-menu #menu="matMenu"></mat-menu>
+          <button id="dec-button" type="button" data-toggle="modal" data-target="#exampleModal"class="btn btn-danger">Déconnexion</button>
+        </li>
+      </ul>
+    </div>
+    
+  </mat-toolbar-row>
+  
+</mat-toolbar>
+
+<!-- Button trigger modal -->
+
+  

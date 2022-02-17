@@ -1,0 +1,58 @@
+.page {
+    color: white;
+    padding: 0 1rem;
+    background: #f1f5f9;
+}
+.page__box {
+    min-height: 120px;
+    background: #19A2E5;
+    margin: 0 -1rem;
+    font-size: 18px;
+}
+.page__content {
+    min-height: calc(100vh - 178px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+    font-size: 18px;
+    padding: 20px;
+}
+.page__content-data {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.container-fluid {
+    margin-top: 20px;
+}
+#container-date {
+    width: 100%;
+}
+hr {
+    height: 5px;
+    background-color: #007BFF;
+}
+/* Style buttons */
+.btn-a {
+    background-color: green; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 10px 13px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+    margin-left: 5px;
+    height: 38px;
+
+  }
+  
+  /* Darker background on mouse-over */
+  .btn-a:hover {
+    background-color: RoyalBlue;
+  }
+  .btn-b {
+      background: rgb(37, 145, 218);
+  }
+  .btn-c {
+      background:  red ;
+  }

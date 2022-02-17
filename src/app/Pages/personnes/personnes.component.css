@@ -1,0 +1,22 @@
+table {
+    width: 80%;
+    margin-top: 20px;
+  }
+  .center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .input {
+      height: 40px;
+      width: 500px;
+  }
+  .btn{
+    margin-left: 170px;
+}
+#title{
+  font-family: "Segoe UI",Arial,sans-serif;
+  font-weight: 100;
+  margin-bottom: 50px;
+}

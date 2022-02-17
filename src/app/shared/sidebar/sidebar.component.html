@@ -1,0 +1,45 @@
+<mat-nav-list>
+  <div class="logo py-4">
+    <img src="./assets/logo.png" alt="Poulina Holding Group" />
+  </div>
+  <mat-divider></mat-divider>
+  <h2 matSubheader class="mt-2">TimeSheet</h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
+    <mat-icon>home</mat-icon> Home
+  </a>
+  <a (click)="show_time()" mat-list-item class="title">
+    <mat-icon class="expand-more">expand_more</mat-icon> Mon TimeSheet
+  </a>
+  <a [hidden]='showTime' mat-list-item routerLinkActive="list-item-active" routerLink="/acceder-au-timesheet">
+    <mat-icon>calendar_today</mat-icon>Accéder au TimeSheet
+  </a>
+
+  <a (click)="show_para()" mat-list-item class="title">
+    <mat-icon class="expand-more">expand_more</mat-icon>Paramétrage d'utilisateur
+  </a>
+  <a [hidden]="showPara" mat-list-item routerLinkActive="list-item-active" routerLink="/roles">
+    <mat-icon>group</mat-icon>Roles
+  </a>
+  <a  [hidden]="showPara" mat-list-item routerLinkActive="list-item-active" routerLink="/services">
+    <mat-icon>settings</mat-icon>Service
+  </a>
+  <a  [hidden]="showPara" mat-list-item routerLinkActive="list-item-active" routerLink="/personnes">
+    <mat-icon>person_add</mat-icon>Personnage
+  </a>
+  <a (click)="show_pro()" mat-list-item class="title">
+    <mat-icon routerLinkActive="list-item-active" class="expand-more">expand_more</mat-icon>Project et Tache
+  </a>
+  <a [hidden]="showPro" mat-list-item routerLinkActive="list-item-active" routerLink="/projects">
+    <mat-icon>settings</mat-icon>Projects
+  </a>
+  <a  [hidden]="showPro"mat-list-item routerLinkActive="list-item-active" routerLink="/tache">
+    <mat-icon>settings</mat-icon>Tache
+  </a>
+  <a (click)="show_val()" mat-list-item class="title">
+    <mat-icon class="expand-more">expand_more</mat-icon>TimeSheet Collaborateur
+  </a>
+  <a [hidden]="showVal" mat-list-item routerLinkActive="list-item-active" routerLink="/validation-timesheet">
+    <mat-icon>event_available</mat-icon>Validation TimeSheets
+  </a>
+</mat-nav-list>

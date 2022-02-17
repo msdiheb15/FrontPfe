@@ -1,0 +1,87 @@
+
+<div id="title" class="center" >
+    <h1>Liste des Tâches </h1>
+    </div>
+  <div class="btn">
+  <button type="button"  data-toggle="modal"
+   data-target="#form-add-project" class="btn btn-success"><i class="fa fa-plus"></i>Ajouter D'une Tâche</button>
+  </div>
+  <div class="center">
+      
+      <table mat-table [dataSource]="dataSource"  matSort class="mat-elevation-z8">    
+          <!-- Name Column -->
+          <ng-container matColumnDef="Service">
+            <th mat-header-cell *matHeaderCellDef> Service </th>
+            <td mat-cell *matCellDef="let element"> {{element.Service}} </td>
+          </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="Tache">
+                <th mat-header-cell *matHeaderCellDef> Nom  Tâche </th>
+                <td mat-cell *matCellDef="let element"> {{element.Nom_Tache}} </td>
+              </ng-container>
+                <!-- Name Column -->
+          <ng-container matColumnDef="Description Tache">
+            <th mat-header-cell *matHeaderCellDef>  Description  Tâches </th>
+            <td mat-cell *matCellDef="let element"> {{element.Description_Tache}} </td>
+          </ng-container>
+        
+   
+            <ng-container matColumnDef="Action">
+              <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td  mat-cell *matCellDef="let element">
+            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+            <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+            </td>
+            </ng-container>
+  
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+  
+  
+  <div data-backdrop="false" class="modal fade" id="form-add-project"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white ">
+            <h5 class="modal-title" id="exampleModalLabel">Ajout d'une tâche</h5>
+            <button class="bg-white text-white" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <form [formGroup]="exform" class = 'normal-form' #TacheAdd="ngForm">
+                <div class="form-group row">
+                  <label  class="col-sm-4 col-form-label">Service Department :</label>
+                  <div class="col-sm-7">
+                    <select  type="text" class="form-control"  >
+                    <option value="--Please choose an option--">--Choisisez une option--</option>
+                    <option value="">marketing</option>
+                    </select>
+                  </div>
+                </div>
+                    <div class="form-group row">
+                      <label  class="col-sm-4 col-form-label">Nom Tâche</label>
+                      <div class="col-sm-7">
+                        <input formControlName="nom_tache" matInput name="Nom_tache" [(ngModel)]="model.Nom_tache" type="text"  class="form-control"  placeholder="Nom Tâche">
+                        <mat-error *ngIf="nom_tache?.invalid && nom_tache?.touched">Tache est requis </mat-error>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label  class="col-sm-4 col-form-label">Description</label>
+                      <div class="col-sm-7">
+                        <input formControlName="description" matInput name="Description" [(ngModel)]="model.Description" type="text"  class="form-control"  placeholder="Description">
+                        <mat-error *ngIf="description?.invalid && description?.touched">Description est requis </mat-error>
+                      </div>
+                    </div>
+              
+                </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-primary">Ajouter Tache</button>
+          </div>
+        </div>
+      </div>
+    </div>

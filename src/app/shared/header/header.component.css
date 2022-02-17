@@ -1,0 +1,21 @@
+mat-toolbar {
+    position: sticky;
+    top: 0;
+    padding: 5px;
+}
+ul li {
+    list-style: none;
+}
+.button-menu {
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+::ng-deep .mat-menu-content {
+    width: 160px;
+}
+#dec-button {
+    margin-bottom: 10px;
+}
