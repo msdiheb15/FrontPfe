@@ -10,7 +10,7 @@ import { Person } from '../Interfaces/person';
 export class PersonService {
   person:any
 
- baseURL="https://localhost:5001/api/person";
+ baseURL="https://localhost:5001/api/Person";
   constructor(private http: HttpClient) { }
 
 

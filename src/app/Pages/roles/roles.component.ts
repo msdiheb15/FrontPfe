@@ -13,7 +13,6 @@ export class RolesComponent implements OnInit {
 
   model :any = {};
   data: Role[]=[];
-
   exform = new FormGroup({
     libelle_Role: new FormControl('',Validators.required)
   })
@@ -57,6 +56,11 @@ getrole(){
   });
 }
 
+deleteRole(id : any ){
 
+  this.RoleService.deleterole(id).subscribe(res => {
+    console.log(res)
+  })
 
+}
 }

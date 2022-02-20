@@ -20,5 +20,10 @@ export class RoleService {
   getrole(): Observable<Role[]>{
     return this.http.get<Role[]>(this.baseURL+ '/GetRole')
   }
+  
+  deleterole(id: any){
+    return this.http.delete(this.baseURL+ `/DeleteRole`,id)
+  }
+
 
 }

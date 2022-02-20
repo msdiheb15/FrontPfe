@@ -13,7 +13,7 @@
         <!-- Name Column -->
         <ng-container matColumnDef="FirstName">
           <th mat-header-cell *matHeaderCellDef> Prénom </th>
-          <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
         </ng-container>
       
            <!-- Name Column -->
@@ -75,9 +75,9 @@
                     <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Prénom :</label>
                         <div class="col-sm-7">
-                          <input  formControlName="firstName" matInput name = "First_name" 
+                          <input  formControlName="FirstName" matInput name = "First_name" 
                            type="text"  class="form-control"  placeholder="Prénom">
-                          <mat-error *ngIf="firstName?.invalid && firstName?.touched"> Entrez votre Prénom </mat-error>
+                          <mat-error *ngIf="FirstName?.invalid && FirstName?.touched"> Entrez votre Prénom </mat-error>
                         </div>
                       </div> 
                       <div class="form-group row">
@@ -129,22 +129,21 @@
                       <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Role :</label>
                         <div class="col-sm-7">
-                          <select name = Role
+                          <select name = Role formControlName="role"
                            type="text" class="form-control"  >
-                          <option value="">--Choisissez votre option--</option>
-                          <option value="8bb087f4-b838-4056-8944-ffc22599fa9e">super admin</option>
-                          <option value="responsable">responsable</option>
-                          <option value=">employer">employer</option>
+                           <option >Choisir votre role </option>
+                          <option *ngFor="let role of dataRole" [value]="role">{{role.libelle_Role}}</option>
+                      
                           </select>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Service Department :</label>
                         <div class="col-sm-7">
-                          <select name = ServiceDepartment
+                          <select name = ServiceDepartment formControlName="serviceDepartment"
                            type="text" class="form-control"  >
-                          <option value="">--Choisissez votre option--</option>
-                          <option value="07E5168F-EDCB-48A9-8CEC-3028315A63C7">marketing</option>
+                           <option >Choisir un service </option>
+                           <option *ngFor="let serviceDepartment of dataService" [value]="serviceDepartment">{{serviceDepartment.libelle_service}}</option>
                           </select>
                         </div>
                       </div>
@@ -153,7 +152,7 @@
                         <label  class="col-sm-4 col-form-label">Activation :</label>
                         <div class="col-sm-7">
                           <input name = Activation
-                           type="checkbox" class="form-control"  >
+                           type="checkbox" class="form-control" formControlName="Activation"  >
                         </div>
                       </div>
                       <div class="modal-footer">

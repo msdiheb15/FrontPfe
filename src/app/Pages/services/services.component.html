@@ -8,7 +8,7 @@
   </div>
   <div class="center">
       
-      <table mat-table [dataSource]="dataSource"  matSort class="mat-elevation-z8">    
+      <table mat-table [dataSource]="data"  matSort class="mat-elevation-z8">    
           <!-- Name Column -->
           <ng-container matColumnDef="libelle_service">
             <th mat-header-cell *matHeaderCellDef> Nom service </th>
@@ -42,21 +42,22 @@
             </button>
           </div>
           <div class="modal-body">
-              <form [formGroup]="exform" class = 'normal-form' #ServiceAdd="ngForm" >
+              <form [formGroup]="exform"   class = 'normal-form' #ServiceAdd="ngForm" >
                   <div class="form-group row">
                       <label  class="col-sm-4 col-form-label">Service</label>
                       <div class="col-sm-7">
-                        <input formControlName="service_departement" matInput name = service_departement [(ngModel)]="model.service_departement" type="text"  class="form-control"  placeholder="Donner Le Service">
-                        <mat-error *ngIf="service_departement?.invalid && service_departement?.touched">Veuillez entrer une service departement </mat-error>
+                        <input formControlName="libelle_service" matInput name = service_departement  type="text"  class="form-control"  placeholder="Donner Le Service">
+                        <mat-error *ngIf="libelle_service?.invalid && libelle_service?.touched">Veuillez entrer une service departement </mat-error>
                       </div>
                     </div>
-              
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                      <button (click)="addService()" class="btn btn-primary" data-dismiss="modal"   [disabled]="exform.invalid" >Ajouter service</button>
+                    </div>
                 </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-            <button type="button" class="btn btn-primary" [disabled]="exform.invalid" >Ajouter service</button>
-          </div>
+
         </div>
       </div>
     </div>
+ 

@@ -1,5 +1,5 @@
 export interface ServiceDepartment {
-    ID_ServiceDepartment: string,
+    iD_ServiceDepartment: string,
     libelle_service:string
   
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceDepartment } from 'src/app/Interfaces/ServiceDepartment';
 import { FormGroup } from '@angular/forms';
 import { Validators , FormControl } from '@angular/forms';
+import { ServiceDepartmentService } from 'src/app/_Services/serviceDepartment.service';
 
 @Component({
   selector: 'app-services',
@@ -15,21 +16,19 @@ export class ServicesComponent implements OnInit {
 
 
   exform = new FormGroup({
-    service_departement: new FormControl('',Validators.required)
+    libelle_service: new FormControl('',Validators.required)
   })
 
-  get service_departement (){return this.exform.get('service_departement')}
+  get libelle_service(){return this.exform.get('libelle_service')}
 
-  constructor() { }
+  constructor(private S : ServiceDepartmentService) { }
 
   ngOnInit(): void {
+    this.getService();
   }
 
 
-  ELEMENT_DATA: ServiceDepartment[] = [
-    {ID_ServiceDepartment:'1',libelle_service: 'Marketing'},
-  ];
-  dataSource = this.ELEMENT_DATA;
+  dataSource = this.data;
 
 
   displayedColumns=
@@ -38,5 +37,36 @@ export class ServicesComponent implements OnInit {
   
   ];
 
+  addService() {
+    console.log(this.exform.value)
+    this.S.addService(this.exform.value).subscribe(reponse => {
+      
+      console.log(reponse)
+      
 
+    console.log(this.getService())
+  }, error => {
+    console.log(error)
+  });
+  this.getService();
+}
+
+
+getService(){
+  this.S.getService().subscribe(Service => {
+    this.data = Service;
+    console.log(this.data)
+  }, error => {
+    console.log(error)
+  });
+  
+}
+
+deleteService(id : any ){
+
+  this.S.DeleteService(id).subscribe(res => {
+    console.log(res)
+  })
+
+}
 }
