@@ -13,7 +13,7 @@
         <!-- Name Column -->
         <ng-container matColumnDef="FirstName">
           <th mat-header-cell *matHeaderCellDef> Prénom </th>
-          <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
         </ng-container>
       
            <!-- Name Column -->
@@ -113,8 +113,8 @@
                           <input formControlName="cin" matInput name = Cin
                            type="text"  class="form-control"  placeholder="cin">
                           <mat-error *ngIf="cin?.invalid && cin?.touched">Cin est requis </mat-error>
-                          <mat-error *ngIf="exform.controls['cin'].errors?.minlength">Minimum 8 caractères requis.</mat-error>
-                          <mat-error *ngIf="exform.controls['cin'].errors?.maxlength">Maximum 8 caractères requis.</mat-error>
+                          <mat-error *ngIf="exform.controls['cin'].errors?.minlength && exform.controls['cin'].errors?.maxlength">Minimum 8 caractères requis.</mat-error>
+                          
                         </div>
                       </div>
                       <div class="form-group row">
@@ -129,10 +129,10 @@
                       <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Role :</label>
                         <div class="col-sm-7">
-                          <select name = Role formControlName="role"
+                          <select name = Role formControlName="fk_Role"
                            type="text" class="form-control"  >
                            <option >Choisir votre role </option>
-                          <option *ngFor="let role of dataRole" [value]="role">{{role.libelle_Role}}</option>
+                          <option *ngFor="let role of dataRole" [value]="role.iD_Role">{{role.libelle_Role}}</option>
                       
                           </select>
                         </div>
@@ -140,10 +140,10 @@
                       <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Service Department :</label>
                         <div class="col-sm-7">
-                          <select name = ServiceDepartment formControlName="serviceDepartment"
+                          <select name = ServiceDepartment formControlName="fk_serviceDepartment"
                            type="text" class="form-control"  >
                            <option >Choisir un service </option>
-                           <option *ngFor="let serviceDepartment of dataService" [value]="serviceDepartment">{{serviceDepartment.libelle_service}}</option>
+                           <option *ngFor="let serviceDepartment of dataService" [value]="serviceDepartment.iD_ServiceDepartment">{{serviceDepartment.libelle_service}}</option>
                           </select>
                         </div>
                       </div>

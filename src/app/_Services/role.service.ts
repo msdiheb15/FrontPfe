@@ -22,7 +22,10 @@ export class RoleService {
   }
   
   deleterole(id: any){
-    return this.http.delete(this.baseURL+ `/DeleteRole`,id)
+    return this.http.delete(this.baseURL+ `/DeleteRole`, id)
+  }
+  getroleById(id: any) {
+    return this.http.get(this.baseURL+ `/GetRoleById`, id)
   }
 
 

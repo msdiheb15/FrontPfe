@@ -10,6 +10,7 @@ import { Role } from 'src/app/Interfaces/role';
 import { ServiceDepartmentService } from 'src/app/_Services/serviceDepartment.service';
 import { ServiceDepartment } from 'src/app/Interfaces/ServiceDepartment';
 
+
 @Component({
   selector: 'app-personnes',
   templateUrl: './personnes.component.html',
@@ -28,8 +29,8 @@ export class PersonnesComponent implements OnInit {
     password : new FormControl('',Validators.required),
     cin : new FormControl('', [Validators.required, Validators.minLength(8),Validators.maxLength(8)]),
     adresse : new FormControl('', Validators.required),
-    serviceDepartment: new FormControl('',Validators.required),
-    role : new FormControl('',Validators.required),
+    fk_serviceDepartment: new FormControl('',Validators.required),
+    fk_Role : new FormControl('',Validators.required),
     Activation : new FormControl('')
     
   })
@@ -40,8 +41,8 @@ export class PersonnesComponent implements OnInit {
  get password(){return this.exform.get('password')}
  get cin(){return this.exform.get('cin')}
  get adresse(){return this.exform.get('adresse')}
- get serviceDepartment(){return this.exform.get('serviceDepartment')}
- get role(){return this.exform.get('role')}
+ get fk_serviceDepartment(){return this.exform.get('serviceDepartment')}
+ get fk_Role(){return this.exform.get('role')}
  get Activation(){return this.exform.get('Activition')}
   
   constructor(private PersonService:PersonService  , private RoleService : RoleService , private S : ServiceDepartmentService) { }
@@ -49,6 +50,7 @@ export class PersonnesComponent implements OnInit {
   ngOnInit(): void {
     this.getrole()
     this.getService()
+    this.getPerson();
     
   }
    
@@ -71,11 +73,12 @@ export class PersonnesComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.data.filter(x =>
-       x.lastName.toLowerCase());
+      this.dataSource.filter = filterValue.trim().toLowerCase());
   }
 
   addPersonne() {
     console.log(this.exform.value)
+    debugger
     this.PersonService.addPersonne(this.exform.value).subscribe(reponse => {
       
       console.log(reponse)
@@ -90,7 +93,10 @@ export class PersonnesComponent implements OnInit {
 
 getPerson(){
   this.PersonService.getpersons().subscribe(person => {
+  
+  
     this.data = person;
+    console.log(this.getRoleById(this.data[0].fk_Role))
     console.log(this.data)
   }, error => {
     console.log(error)
@@ -114,6 +120,12 @@ getService(){
     console.log(error)
   });
   
+}
+getRoleById(id : any ):any {
+    this.RoleService.getroleById(id).subscribe(res => {
+      console.log(res)
+      return res
+    })
 }
 
 }

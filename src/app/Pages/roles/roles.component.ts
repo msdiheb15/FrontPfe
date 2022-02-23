@@ -59,6 +59,7 @@ getrole(){
 deleteRole(id : any ){
 
   this.RoleService.deleterole(id).subscribe(res => {
+    console.log(id)
     console.log(res)
   })
 
