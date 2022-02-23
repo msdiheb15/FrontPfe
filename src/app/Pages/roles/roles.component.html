@@ -50,13 +50,13 @@
                         <mat-error *ngIf="libelle_Role?.invalid && libelle_Role?.touched">Veuillez entrer un role </mat-error>
                       </div>
                     </div>
-              
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                      <button (click)="addRole()" type="submit" class="btn btn-primary"  data-dismiss="modal" [disabled]="exform.invalid">Ajouter Role</button>
+                    </div>
                 </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-            <button (click)="addRole()" type="submit" class="btn btn-primary"  [disabled]="exform.invalid">Ajouter Role</button>
-          </div>
+          
         </div>
       </div>
     </div>

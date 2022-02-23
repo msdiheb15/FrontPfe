@@ -28,5 +28,8 @@ export class ServiceDepartmentService {
   UpdateService(model:any){
     return this.http.put(this.baseURL + '/EditServiceDepartment',model);
   }
+  getServiceById(id: any) {
+    return this.http.get(this.baseURL+ `/GetServiceDepartmentById`, id)
+  }
 
 }

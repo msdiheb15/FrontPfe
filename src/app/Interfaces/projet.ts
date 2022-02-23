@@ -1,11 +1,23 @@
 export interface Projet {
-    ID_Projet: string;
-    Service: string,
-    Nom_Projet: string,
-    Nom_Client: string,
-    Cloture: string,
-    debut_estime:string,
-    fin_estime:string,
+    iD_Projet: string,
+
+    nom_Projet: string,
+
+    nom_Client: string,
+
+    etat_projet: string,
+
+    description_projet:string,
+
+    debut_estime:Date,
+
+    fin_estime:Date,
+
+    debut_estimej:Date,
+
+    fin_estimej:Date,
+
+    fk_ServiceDepartment:string,
     
 }
 

@@ -20,13 +20,15 @@ export class RoleService {
   getrole(): Observable<Role[]>{
     return this.http.get<Role[]>(this.baseURL+ '/GetRole')
   }
-  
-  deleterole(id: any){
-    return this.http.delete(this.baseURL+ `/DeleteRole`, id)
-  }
   getroleById(id: any) {
     return this.http.get(this.baseURL+ `/GetRoleById`, id)
   }
+  deleterole(id: any){
+    return this.http.delete(this.baseURL+ `/Deleterole`, id)
+  }
 
+  Updaterole(model:any){
+    return this.http.put(this.baseURL + '/EditRole',model);
+  }
 
 }

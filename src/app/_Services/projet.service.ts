@@ -8,17 +8,23 @@ import {Projet} from '../Interfaces/projet';
   providedIn: 'root'
 })
 export class ProjetService {
-  person:any
+  projet:any
 
- baseURL="https://localhost:5001/api/projet";
+ baseURL="https://localhost:5001/api/Projet";
   constructor(private http: HttpClient) { }
 
   addProjet(model:any){
-    return this.http.post(this.baseURL + '/AddProjet',model);
+    return this.http.post(this.baseURL +'/AddProjet',model);
   }
 
   getprojet(): Observable<Projet[]>{
-    return this.http.get<Projet[]>(this.baseURL)
+    return this.http.get<Projet[]>(this.baseURL +'/GetProjet')
   }
 
+  Deleteprojet(model:any){
+    return this.http.delete(this.baseURL + '/DeleteProjet',model);
+  }
+  Updateprojet(model:any){
+    return this.http.put(this.baseURL + '/EditProjet',model);
+  }
 }

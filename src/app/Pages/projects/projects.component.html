@@ -11,7 +11,7 @@
 
 <div class="center">
     
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">    
+    <table mat-table [dataSource]="data" matSort class="mat-elevation-z8">    
         <!-- Name Column -->
         <ng-container matColumnDef="Service">
           <th mat-header-cell *matHeaderCellDef> Service </th>
@@ -29,9 +29,14 @@
             <td mat-cell *matCellDef="let element"> {{element.Nom_Client}} </td>
           </ng-container>
              <!-- Name Column -->
-        <ng-container matColumnDef="Cloture">
-            <th mat-header-cell *matHeaderCellDef> Cloture </th>
-            <td mat-cell *matCellDef="let element"> {{element.Cloture}} </td>
+        <ng-container matColumnDef="Description">
+          <th mat-header-cell *matHeaderCellDef>Description </th>
+          <td mat-cell *matCellDef="let element"> {{element.Description}} </td>
+        </ng-container>
+             <!-- Name Column -->
+        <ng-container matColumnDef="Etat_projet">
+            <th mat-header-cell *matHeaderCellDef> Etat projet </th>
+            <td mat-cell *matCellDef="let element"> {{element.Etat_projet}} </td>
           </ng-container>
              <!-- Name Column -->
         <ng-container matColumnDef="Date Estime">
@@ -69,77 +74,88 @@
           </button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="exform" class = 'normal-form' #ProjectAdd="ngForm" autocomplete="off">
-                <div class="form-group row">
-                    <label  class="col-sm-4 col-form-label">Service :</label>
-                    <div class="col-sm-7">
-                      <input formControlName="marketing" matInput name = Marketing [(ngModel)]="model.Marketing" type="text"  class="form-control"  placeholder="Marketning">
-                      <mat-error *ngIf="marketing?.invalid && marketing?.touched">Service est requis </mat-error>
-                    </div>
-                  </div>
+            <form [formGroup]="exform" class = 'normal-form' #ProjectAdd="ngForm" (ngSubmit)="addProjet()" autocomplete="off">
+              <div class="form-group row">
+                <label  class="col-sm-4 col-form-label">Service Department :</label>
+                <div class="col-sm-7">
+                  <select name = ServiceDepartment formControlName="fk_serviceDepartment"
+                   type="text" class="form-control"  >
+                   <option >Choisir un service </option>
+                   <option *ngFor="let serviceDepartment of dataService" [value]="serviceDepartment.iD_ServiceDepartment">{{serviceDepartment.libelle_service}}</option>
+                  </select>
+                </div>
+                   </div>
                   <div class="form-group row">
                     <label  class="col-sm-4 col-form-label">Nom Projet :</label>
                     <div class="col-sm-7">
-                      <input formControlName="procedures_marketing"  matInput name = ProcéduresMarketing
-                      [(ngModel)]="model.ProceduresMarketing" type="text" class="form-control"  placeholder="Procédures Marketning">
-                      <mat-error *ngIf="procedures_marketing?.invalid && procedures_marketing?.touched">Procédure marketing est requis </mat-error>
+                      <input formControlName="nom_Projet"  matInput name = nom_Projet
+                       type="text" class="form-control"  placeholder="Nom Projet">
+                      <mat-error *ngIf="nom_Projet?.invalid && nom_Projet?.touched">Nom Projet est requis </mat-error>
                     </div>
                   </div>  <div class="form-group row">
                     <label  class="col-sm-4 col-form-label">Nom Client :</label>
                     <div class="col-sm-7">
-                      <input formControlName="pgh"  matInput name = PGH
-                      [(ngModel)]="model.PGH"type="text" type="text"  class="form-control"  placeholder="PGH">
-                      <mat-error *ngIf="pgh?.invalid && pgh?.touched"> Le nom du client est requis </mat-error>
+                      <input formControlName="nom_Client"  matInput name = nom_Client
+                      type="text" type="text"  class="form-control"  placeholder="Nom Client">
+                      <mat-error *ngIf="nom_Client?.invalid && nom_Client?.touched"> Le nom du client est requis </mat-error>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <label  class="col-sm-4 col-form-label">Description Projet :</label>
-                    <div class="col-sm-7">
-                      <input formControlName="description_projet" matInput name = DescriptionProjet 
-                      [(ngModel)]="model.DescriptionProjet" type="text" class="form-control"  placeholder="Description Projet">
-                      <mat-error *ngIf="description_projet?.invalid && description_projet?.touched">Saisissez une description  </mat-error>
-                    </div>
+                 <div class="form-group row">
+                  <label  class="col-sm-4 col-form-label">Etat projet :</label>
+                  <div class="col-sm-7">
+                    <input formControlName="etat_projet"  matInput name = etat_projet
+                    type="text" type="text"  class="form-control"  placeholder="etat_projet">
+                    <mat-error *ngIf="etat_projet?.invalid && etat_projet?.touched"> L'etat projet est requis </mat-error>
                   </div>
-                  <div class="form-group row">
-                    <label  class="col-sm-4 col-form-label">Date Debut Estimée :</label>
-                    <div class="col-sm-7">
-                      <input  formControlName="date_Debut_E" name = Date_Debut_Estimée
-                      [(ngModel)]="model.Date_debut_E" type="date" class="form-control"  >
-                      <mat-error *ngIf="date_Debut_E?.invalid && date_Debut_E?.touched"> Veuillez entrer une date </mat-error>
-                    </div>
+                </div>
+                <div class="form-group row">
+                  <label  class="col-sm-4 col-form-label">description_projet :</label>
+                  <div class="col-sm-7">
+                    <input formControlName="description_projet"  matInput name = description
+                    type="text" type="text"  class="form-control"  placeholder="description_projet">
+                    <mat-error *ngIf="description_projet?.invalid && description_projet?.touched"> La description est requis </mat-error>
                   </div>
-                  <div class="form-group row">
-                    <label  class="col-sm-4 col-form-label">Date Debut Réelle :</label>
-                    <div class="col-sm-7">
-                      <input formControlName="date_Debut_R" name = Date_Debut_Réelle
-                      [(ngModel)]="model.Date_debut_R" type="date" class="form-control"  >
-                      <mat-error *ngIf="date_Debut_R?.invalid && date_Debut_R?.touched"> Veuillez entrer une date </mat-error>
-                    </div>
+                </div>
+                <div class="form-group row">
+                  <label  class="col-sm-4 col-form-label">Durée Estimée  :</label>
+                  <div class="col-sm-7">
+                    <input formControlName="debut_estime" matInput name = Durée_Réelle
+                     type="date" class="form-control"  >
+                    <mat-error *ngIf="debut_estime?.invalid && debut_estime?.touched"> Veuillez entrer votre durée estimée </mat-error>
                   </div>
+                </div>
+                <div class="form-group row">
+                  <label  class="col-sm-4 col-form-label">Durée Réelle  :</label>
+                  <div class="col-sm-7">
+                    <input formControlName="fin_estime" matInput name = Durée_Réelle
+                     type="date" class="form-control"  >
+                    <mat-error *ngIf="fin_estime?.invalid && fin_estime?.touched">  Veuillez entrer votre durée réelle </mat-error>
+                  </div>
+                </div>
                   <div class="form-group row">
                     <label  class="col-sm-4 col-form-label">Durée Estimée (Par Jours) :</label>
                     <div class="col-sm-7">
-                      <input formControlName="dure_E" matInput name = Durée_Estimée
-                      [(ngModel)]="model.Duree_E" type="number" class="form-control"  >
-                      <mat-error *ngIf="dure_E?.invalid && dure_E?.touched"> Veuillez entrer votre durée estimée </mat-error>
+                      <input formControlName="debut_estimej" matInput name = Durée_Réelle
+                       type="number" class="form-control"  >
+                      <mat-error *ngIf="debut_estimej?.invalid && debut_estimej?.touched"> Veuillez entrer votre durée estimée </mat-error>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label  class="col-sm-4 col-form-label">Durée Réelle (Par Jours) :</label>
                     <div class="col-sm-7">
-                      <input formControlName="dure_R" matInput name = Durée_Réelle
-                      [(ngModel)]="model.Duree_R" type="number" class="form-control"  >
-                      <mat-error *ngIf="dure_R?.invalid && dure_R?.touched">  Veuillez entrer votre durée réelle </mat-error>
+                      <input formControlName="fin_estimej" matInput name = Durée_Réelle
+                       type="number" class="form-control"  >
+                      <mat-error *ngIf="fin_estimej?.invalid && fin_estimej?.touched">  Veuillez entrer votre durée réelle </mat-error>
                     </div>
                   </div>
                    
-               
-              </form>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary"  [disabled]="exform.invalid">Ajouter Projet</button>
+                  </div>
+             </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-          <button type="button" class="btn btn-primary"[disabled]="exform.invalid">Ajouter Projet</button>
-        </div>
+        
       </div>
     </div>
   </div>
