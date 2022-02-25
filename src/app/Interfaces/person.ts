@@ -15,9 +15,7 @@ export interface Person {
 
     activation: number,
 
-    fk_Role:string,
-
-    fk_ServiceDepartment:string,
+  
 
   
     

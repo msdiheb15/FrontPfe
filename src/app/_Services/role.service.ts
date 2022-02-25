@@ -21,10 +21,10 @@ export class RoleService {
     return this.http.get<Role[]>(this.baseURL+ '/GetRole')
   }
   getroleById(id: any) {
-    return this.http.get(this.baseURL+ `/GetRoleById`, id)
+    return this.http.get(this.baseURL+ `/GetRoleById?=id`, id)
   }
   deleterole(id: any){
-    return this.http.delete(this.baseURL+ `/Deleterole`, id)
+    return this.http.delete(this.baseURL+ `/Deleterole?id=`+id)
   }
 
   Updaterole(model:any){

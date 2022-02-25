@@ -17,8 +17,8 @@ import { ServiceDepartment } from 'src/app/Interfaces/ServiceDepartment';
   styleUrls: ['./personnes.component.css']
 })
 export class PersonnesComponent implements OnInit {
-
-  data: Person[]=[];
+  tab:any = []
+  data:any=[];
   hide = true;
   dataRole: Role[]=[];
   dataService :ServiceDepartment[]=[];
@@ -72,13 +72,13 @@ export class PersonnesComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.data.filter(x =>
+    this.data.filter(() =>
       this.dataSource.filter = filterValue.trim().toLowerCase());
   }
 
   addPersonne() {
     console.log(this.exform.value)
-    debugger
+  
     this.PersonService.addPersonne(this.exform.value).subscribe(reponse => {
       
       console.log(reponse)
@@ -91,14 +91,37 @@ export class PersonnesComponent implements OnInit {
   }
 
 
+  getAllPersons(i : any){
+    var tab = this.dataRole.filter( x => {
+      return x.iD_Role == i
+    })
+    this.tab.push(tab[0])
+    console.log(this.tab)
+     
+  }
+
+
 getPerson(){
-  this.PersonService.getpersons().subscribe(person => {
-  
+  this.PersonService.getpersons().subscribe((person: any[]) => {
   
     this.data = person;
-    console.log(this.getRoleById(this.data[0].fk_Role))
-    console.log(this.data)
-  }, error => {
+  // console.log( this.RoleService.getroleById(person[0].fk_Role))
+   
+    
+    console.log((this.data[1].fK_Role))
+  
+    this.data.map((i: any) => {
+    this.getAllPersons(i.fK_Role)
+    })
+
+
+
+     
+
+    
+
+  
+  }, (error: any) => {
     console.log(error)
   });
 }
@@ -106,7 +129,7 @@ getPerson(){
 getrole(){
   this.RoleService.getrole().subscribe(Role => {
     this.dataRole = Role;
-    console.log(this.data)
+    
   }, error => {
     console.log(error)
   });
@@ -115,7 +138,7 @@ getrole(){
 getService(){
   this.S.getService().subscribe(Service => {
     this.dataService = Service;
-    console.log(this.dataService)
+    
   }, error => {
     console.log(error)
   });
@@ -123,7 +146,7 @@ getService(){
 }
 getRoleById(id : any ):any {
     this.RoleService.getroleById(id).subscribe(res => {
-      console.log(res)
+      
       return res
     })
 }

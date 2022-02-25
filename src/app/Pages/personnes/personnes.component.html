@@ -8,7 +8,7 @@
 
 <div class="center">
     
-    <table mat-table [dataSource]="data" matSort class="mat-elevation-z8">
+    <table mat-table  [dataSource]="data" matSort class="mat-elevation-z8">
       
         <!-- Name Column -->
         <ng-container matColumnDef="FirstName">
@@ -39,12 +39,12 @@
              <!-- Name Column -->
         <ng-container matColumnDef="Role">
             <th mat-header-cell *matHeaderCellDef> Role </th>
-            <td mat-cell *matCellDef="let element"> {{element.libelle_Role}} </td>
+            <td mat-cell  *matCellDef="let element"> {{element.libelle_Role}} </td>
           </ng-container>
              <!-- Name Column -->
         <ng-container matColumnDef="ServiceDepartment">
             <th mat-header-cell *matHeaderCellDef> Service Department </th>
-            <td mat-cell *matCellDef="let element"> {{element.libelle_service}} </td>
+            <td mat-cell *matCellDef="let element of tab"> {{element.iD_Role}} </td>
           </ng-container>
 
           <ng-container matColumnDef="Action">

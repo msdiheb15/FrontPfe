@@ -18,8 +18,8 @@ export class PersonService {
     return this.http.post(this.baseURL + '/AddPerson',model);
   }
 
-  getpersons(): Observable<Person[]>{
-    return this.http.get<Person[]>(this.baseURL + '/GetPerson')
+  getpersons(): any{
+    return this.http.get(this.baseURL + '/GetPerson')
   }
 
   DeletePerson(model:any){
