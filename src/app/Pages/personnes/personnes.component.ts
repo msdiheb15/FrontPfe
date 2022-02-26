@@ -9,6 +9,11 @@ import { RoleService } from 'src/app/_Services/role.service';
 import { Role } from 'src/app/Interfaces/role';
 import { ServiceDepartmentService } from 'src/app/_Services/serviceDepartment.service';
 import { ServiceDepartment } from 'src/app/Interfaces/ServiceDepartment';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -17,6 +22,8 @@ import { ServiceDepartment } from 'src/app/Interfaces/ServiceDepartment';
   styleUrls: ['./personnes.component.css']
 })
 export class PersonnesComponent implements OnInit {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   tab:any = []
   data:any=[];
   hide = true;
@@ -45,7 +52,7 @@ export class PersonnesComponent implements OnInit {
  get fk_Role(){return this.exform.get('role')}
  get Activation(){return this.exform.get('Activition')}
   
-  constructor(private PersonService:PersonService  , private RoleService : RoleService , private S : ServiceDepartmentService) { }
+  constructor(private PersonService:PersonService  , private RoleService : RoleService , private S : ServiceDepartmentService,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getrole()
@@ -56,34 +63,18 @@ export class PersonnesComponent implements OnInit {
    
 
   
-  displayedColumns=
-   ['FirstName',
-   'LastName',
-   'Cin' ,
-   'Adresse',
-   'Activation',
-   'Role',
-   'ServiceDepartment',
-  'Action',
-  ];
-
-  dataSource = new MatTableDataSource(this.data);
-
+  
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.data.filter(() =>
-      this.dataSource.filter = filterValue.trim().toLowerCase());
+      this.data.filter = filterValue.trim().toLowerCase());
   }
 
   addPersonne() {
     console.log(this.exform.value)
-  
     this.PersonService.addPersonne(this.exform.value).subscribe(reponse => {
-      
       console.log(reponse)
-      
-
     console.log(this.getPerson())
   }, error => {
     console.log(error)
@@ -105,22 +96,14 @@ getPerson(){
   this.PersonService.getpersons().subscribe((person: any[]) => {
   
     this.data = person;
-  // console.log( this.RoleService.getroleById(person[0].fk_Role))
+
+
+  // console.log( this.RoleService.getroleById(person[0].fk_Role)
+  // console.log((this.data[1].fK_Role))
+  //this.data.map((i: any) => {
+  //this.getAllPersons(i.fK_Role)
+   // })
    
-    
-    console.log((this.data[1].fK_Role))
-  
-    this.data.map((i: any) => {
-    this.getAllPersons(i.fK_Role)
-    })
-
-
-
-     
-
-    
-
-  
   }, (error: any) => {
     console.log(error)
   });
@@ -150,5 +133,43 @@ getRoleById(id : any ):any {
       return res
     })
 }
+
+
+
+
+
+
+
+DeletePerson(id : any){
+  this.PersonService.DeletePerson(id).subscribe(res => {
+    this.getPerson();
+    this.openSnackBar(); {
+      this._snackBar.open('Delete sucessl!!', 'Dismiss', {
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+        duration:3000
+      });
+    }
+  }, () => {
+    this.getPerson();
+    this.openSnackBar(); {
+      this._snackBar.open('Tu ne peut pas suprimer un Role affecter a un persone !', 'Dismiss', {
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+        duration:3000
+      });
+    }
+  });
+
+}
+
+
+openSnackBar() {
+  this._snackBar.open('', '', {
+    horizontalPosition: this.horizontalPosition,
+    verticalPosition: this.verticalPosition,
+  });
+}
+
 
 }

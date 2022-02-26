@@ -32,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
          ReactiveFormsModule,
          MatGridListModule,
          MatInputModule,
+         MatSnackBarModule,
          MatFormFieldModule
   ],
   providers: [ProjetService],

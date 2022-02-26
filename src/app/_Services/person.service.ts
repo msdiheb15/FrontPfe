@@ -22,8 +22,8 @@ export class PersonService {
     return this.http.get(this.baseURL + '/GetPerson')
   }
 
-  DeletePerson(model:any){
-    return this.http.delete(this.baseURL + '/DeletePerson',model);
+  DeletePerson(id:any){
+    return this.http.delete(this.baseURL + '/DeletePerson?id='+id);
   }
   UpdatePerson(model:any){
     return this.http.put(this.baseURL + '/EditPerson',model);

@@ -4,31 +4,26 @@
     </div>
   <div class="btn_ajout">
   <button type="button"  data-toggle="modal"
-   data-target="#form-add-project" class="btn btn-success"><i class="fa fa-plus"></i>Ajouter un Services</button>
+   data-target="#form-add-project" class="btn btn-success"><i class="fa fa-plus"></i>Ajouter un Service</button>
   </div>
   <div class="center">
       
-      <table mat-table [dataSource]="data"  matSort class="mat-elevation-z8">    
-          <!-- Name Column -->
-          <ng-container matColumnDef="libelle_service">
-            <th mat-header-cell *matHeaderCellDef> Nom service </th>
-            <td mat-cell *matCellDef="let element"> {{element.libelle_service}} </td>
-          </ng-container>
-        
-   
-            <ng-container matColumnDef="Action">
-              <th mat-header-cell *matHeaderCellDef>  </th>
-            <td  mat-cell *matCellDef="let element">
-              <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
-            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-           
-            </td>
-            </ng-container>
+    <table>
+      <tr id="header">
+          <th>ServiceDepartment </th>
+          <th>Action</th>
+          
+      </tr>
+      <tr *ngFor="let group of data">
+          <td>{{group.libelle_service}} </td>
+          <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+          <button (click)="deleteService(group.iD_ServiceDepartment)" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+          
+              
+      </tr>
+     
   
-    
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+  </table>
       </div>
   
   
@@ -52,7 +47,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                      <button (click)="addService()" class="btn btn-primary" data-dismiss="modal"   [disabled]="exform.invalid" >Ajouter service</button>
+                      <button mat-stroked-button (click)="openSnackBar()" (click)="addService()" class="btn btn-primary" data-dismiss="modal"   [disabled]="exform.invalid" >Ajouter service</button>
                     </div>
                 </form>
           </div>
