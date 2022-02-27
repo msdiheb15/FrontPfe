@@ -24,11 +24,11 @@ export class RoleService {
     return this.http.get(this.baseURL+ `/GetRoleById?=id`, id)
   }
   deleterole(id: any){
-    return this.http.delete(this.baseURL+ `/Deleterole?id=`+id)
+    return this.http.delete<any>(this.baseURL+ '/Deleterole?id='+id)
   }
 
-  Updaterole(model:any){
-    return this.http.put(this.baseURL + '/EditRole',model);
+  putrole(model:any,id: any){
+    return this.http.put<any>(this.baseURL + '/EditRole'+id ,model);
   }
 
 }

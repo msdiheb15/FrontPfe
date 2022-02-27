@@ -13,10 +13,22 @@ table {
       width: 500px;
   }
   .btn{
-    margin-left: 20px;
-}
-#title{
-  font-family: "Segoe UI",Arial,sans-serif;
-  font-weight: 100;
-  margin-bottom: 50px;
-}
+    margin: 5px;
+  }
+  
+  
+  #title{
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 100;
+    margin-bottom: 100px;
+  }
+  
+  .bg-primary {
+    background-color: #0F172A!important;
+  }
+  tr.mat-header-row {
+    background-color: #0F172A!important;
+  }
+  .mat-header-cell {
+    color: #f8f9fa;
+  }

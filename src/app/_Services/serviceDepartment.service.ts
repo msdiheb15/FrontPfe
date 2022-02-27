@@ -22,11 +22,11 @@ export class ServiceDepartmentService {
     return this.http.get<ServiceDepartment[]>(this.baseURL + '/GetServiceDepartment')
   }
 
-  DeleteService(model:any){
-    return this.http.delete(this.baseURL + '/DeleteServiceDepartment',model);
+  DeleteService(id: any){
+    return this.http.delete(this.baseURL + '/DeleteServiceDepartment?id='+id);
   }
-  UpdateService(model:any){
-    return this.http.put(this.baseURL + '/EditServiceDepartment',model);
+   putService(model:any,id: any){
+    return this.http.put(this.baseURL + '/EditServiceDepartment'+id ,model);
   }
   getServiceById(id: any) {
     return this.http.get(this.baseURL+ `/GetServiceDepartmentById`, id)
