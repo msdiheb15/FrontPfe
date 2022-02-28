@@ -15,7 +15,13 @@ export interface Person {
 
     activation: number,
 
-  
+    fK_Role: string,
+
+    fK_ServiceDepartment: string,
+
+    role: string,
+
+    service: string
 
   
     

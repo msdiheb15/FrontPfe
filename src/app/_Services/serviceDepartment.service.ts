@@ -28,8 +28,8 @@ export class ServiceDepartmentService {
    putService(model:any,id: any){
     return this.http.put(this.baseURL + '/EditServiceDepartment'+id ,model);
   }
-  getServiceById(id: any) {
-    return this.http.get(this.baseURL+ `/GetServiceDepartmentById`, id)
+  getServiceById(id: any): Observable<ServiceDepartment> {
+    return this.http.get<ServiceDepartment>(this.baseURL+ `/GetServiceDepartmentById?id=`+id)
   }
 
 }

@@ -29,6 +29,7 @@ export class PersonnesComponent implements OnInit {
   hide = true;
   dataRole: Role[]=[];
   dataService :ServiceDepartment[]=[];
+  userRole: string = ""
 
 
   
@@ -58,8 +59,7 @@ export class PersonnesComponent implements OnInit {
   constructor(private PersonService:PersonService  , private RoleService : RoleService , private S : ServiceDepartmentService,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.getrole()
-    this.getService()
+    
     this.getPerson();
     
   }
@@ -96,61 +96,29 @@ export class PersonnesComponent implements OnInit {
   }
 
 
-  getAllPersons(i : any){
-    var tab = this.dataRole.filter( x => {
-      return x.iD_Role == i
-    })
-    this.tab.push(tab[0])
-    console.log(this.tab)
-     
-  }
-
-
+ 
 getPerson(){
-  this.PersonService.getpersons().subscribe((person: any[]) => {
+  this.PersonService.getpersons().subscribe((person) => {
   
     this.data = person;
 
+    this.data.map((p: Person) =>{
+      this.RoleService.getroleById(p.fK_Role).subscribe(res => {
+        p.role = res.libelle_Role
+        console.log(p)
+      })
+      this.S.getServiceById(p.fK_ServiceDepartment).subscribe(res => {
+        p.service = res.libelle_service
+        console.log(p)
+      })
 
-  // console.log( this.RoleService.getroleById(person[0].fk_Role)
-  // console.log((this.data[1].fK_Role))
-  //this.data.map((i: any) => {
-  //this.getAllPersons(i.fK_Role)
-   // })
-   
-  }, (error: any) => {
-    console.log(error)
-  });
-}
-
-getrole(){
-  this.RoleService.getrole().subscribe(Role => {
-    this.dataRole = Role;
-    
-  }, error => {
-    console.log(error)
-  });
-}
-
-getService(){
-  this.S.getService().subscribe(Service => {
-    this.dataService = Service;
-    
-  }, error => {
-    console.log(error)
-  });
-  
-}
-getRoleById(id : any ):any {
-    this.RoleService.getroleById(id).subscribe(res => {
-      
-      return res
     })
+
+
+     }, (error: any) => {
+    console.log(error)
+  });
 }
-
-
-
-
 
 
 
