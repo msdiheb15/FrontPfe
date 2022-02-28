@@ -8,7 +8,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { data } from 'jquery';
+
 
 @Component({
   selector: 'app-roles',
@@ -21,7 +21,6 @@ export class RolesComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   model :any = {};
-  tab:any = []
   data: Role[]=[];
   id : any
   id_role:any=''

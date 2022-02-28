@@ -30,6 +30,8 @@ export class PersonnesComponent implements OnInit {
   dataRole: Role[]=[];
   dataService :ServiceDepartment[]=[];
   userRole: string = ""
+  id_person:any=''
+  lib_FirstName:string=''
 
 
   
@@ -46,6 +48,21 @@ export class PersonnesComponent implements OnInit {
     
   })
 
+  putform = new FormGroup({
+    iD_person: new FormControl('',Validators.required),
+    FirstName: new FormControl('',Validators.required),
+    lastName: new FormControl('', Validators.required),
+    login : new FormControl('', [Validators.email , Validators.required]),
+    password : new FormControl('',Validators.required),
+    cin : new FormControl('', [Validators.required, Validators.minLength(8),Validators.maxLength(8)]),
+    adresse : new FormControl('', Validators.required),
+    fk_serviceDepartment: new FormControl('',Validators.required),
+    fk_Role : new FormControl('',Validators.required),
+    Activation : new FormControl('')
+  })
+
+
+
  get FirstName(){return this.exform.get('first_name')}
  get lastName(){return this.exform.get('last_name')}
  get login(){return this.exform.get('login')}
@@ -59,7 +76,8 @@ export class PersonnesComponent implements OnInit {
   constructor(private PersonService:PersonService  , private RoleService : RoleService , private S : ServiceDepartmentService,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    
+    this.getrole()
+    this.getService()
     this.getPerson();
     
   }
@@ -84,6 +102,28 @@ export class PersonnesComponent implements OnInit {
     this.data.filter(() =>
       this.data.filter = filterValue.trim().toLowerCase());
   }
+
+  getrole(){
+    this.RoleService.getrole().subscribe(Role => {
+      this.dataRole = Role;
+      
+    }, error => {
+      console.log(error)
+    });
+  }
+  
+  getService(){
+    this.S.getService().subscribe(Service => {
+      this.dataService = Service;
+      
+    }, error => {
+      console.log(error)
+    });
+    
+  }
+
+
+
 
   addPersonne() {
     console.log(this.exform.value)
@@ -120,7 +160,32 @@ getPerson(){
   });
 }
 
+getpersonById(id : any ):any {
+  this.PersonService.getpersonById(id).subscribe(res => {
+    console.log(id)
+    console.log(res)
+    this.id_person = res.iD_person
+    this.lib_FirstName = res.firstName
 
+    return res
+  }), (error: any) => {
+    console.log(error)
+  };
+}
+
+
+putPerson(){
+  console.log(this.putform.value )
+  this.PersonService.putPerson(this.putform.value).subscribe(res => {
+    console.log(res)
+    this.getPerson() 
+    
+  }, error => {
+    console.log(error)
+  });
+    
+      
+}
 
 DeletePerson(id : any){
   this.PersonService.deleteperson(id).subscribe(res => {

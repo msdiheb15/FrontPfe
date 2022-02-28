@@ -73,23 +73,12 @@
         </div>
         <div class="modal-body">
             <form [formGroup]="putform" (ngSubmit)="putrole()" class = 'normal-form' #PutAdd="ngForm" >
-          
-
-
               <div class="form-group row">
-                  
-
-          
-
-
                     <label  class="col-sm-4 col-form-label">Role :</label>
                     <div class="col-sm-7">
-                      
-                      <input formControlName="libelle_Role" matInput name = role [(ngModel)]="model.role" type="text"  class="form-control"  placeholder="editer Le  Role" value="sdfsdf">
-                    </div>
-                    
+                      <input formControlName="libelle_Role" matInput name = role [(ngModel)]="model.role" type="text"  class="form-control"  placeholder="editer Le  Role">
+                    </div> 
                   </div>
-                  
               <div class="form-group row"  [style.visibility]="'hidden'" >
                 <div class="col-sm-7">
                   <input height="0px"  formControlName="iD_Role"   [(ngModel)]="id_role"

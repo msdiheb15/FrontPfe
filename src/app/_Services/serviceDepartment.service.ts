@@ -21,15 +21,15 @@ export class ServiceDepartmentService {
   getService(): Observable<ServiceDepartment[]>{
     return this.http.get<ServiceDepartment[]>(this.baseURL + '/GetServiceDepartment')
   }
-
-  DeleteService(id: any){
-    return this.http.delete(this.baseURL + '/DeleteServiceDepartment?id='+id);
-  }
-   putService(model:any,id: any){
-    return this.http.put(this.baseURL + '/EditServiceDepartment'+id ,model);
-  }
   getServiceById(id: any): Observable<ServiceDepartment> {
     return this.http.get<ServiceDepartment>(this.baseURL+ `/GetServiceDepartmentById?id=`+id)
   }
+  DeleteService(id: any){
+    return this.http.delete<any>(this.baseURL + '/DeleteServiceDepartment?id='+id);
+  }
+   putService(model:any){
+    return this.http.put<any>(this.baseURL + '/EditServiceDepartment',model);
+  }
+ 
 
 }

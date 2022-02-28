@@ -4,7 +4,7 @@
     </div>
   <div class="btn_ajout">
   <button type="button"  data-toggle="modal"
-   data-target="#form-add-project" class="btn btn-success"><i class="fa fa-plus"></i>Ajouter un Services</button>
+   data-target="#form-add-service" class="btn btn-success"><i class="fa fa-plus"></i>Ajouter un Services</button>
   </div>
   <div class="center">
       
@@ -19,7 +19,9 @@
             <ng-container matColumnDef="Action">
               <th mat-header-cell *matHeaderCellDef>Action  </th>
             <td  mat-cell *matCellDef="let element">
-              <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+              <button type="button"  data-toggle="modal" (click)="getServiceById(element.iD_ServiceDepartment)"
+               data-target="#form-update-service"  class="btn btn-primary"><i class="fa fa-edit" ></i></button>
+
               <button (click)="deleteService(element.iD_ServiceDepartment)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
            
             </td>
@@ -32,7 +34,7 @@
       </div>
   
   
-  <div data-backdrop="false" class="modal fade" id="form-add-project"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div data-backdrop="false" class="modal fade" id="form-add-service"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header bg-primary text-white ">
@@ -61,3 +63,43 @@
       </div>
     </div>
  
+
+
+    <div data-backdrop="false" class="modal fade" id="form-update-service"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white ">
+            <h5 class="modal-title" id="exampleModalLabel">Modifier {{lib_service}}</h5>
+            <button class="bg-white text-white" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <form [formGroup]="putform" (ngSubmit)="putService()" class = 'normal-form' #PutAdd="ngForm" >
+                 <div class="form-group row">
+                    
+                      <label  class="col-sm-4 col-form-label">Service :</label>
+                      <div class="col-sm-7">
+                        
+                        <input formControlName="libelle_service" matInput name = service_departement  type="text"  class="form-control"  placeholder="Editer Le  service">
+                      </div>
+                      
+                    </div>
+                    
+                <div class="form-group row"  [style.visibility]="'hidden'" >
+                  <div class="col-sm-7">
+                    <input height="0px"  formControlName="iD_ServiceDepartment"   [(ngModel)]="id_service"
+                     type="text" value="{{id_service}}">
+                  </div>
+                </div> 
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                      <button (click)="putService()" type="submit" class="btn btn-primary"  data-dismiss="modal">Enregistrer Modification Service</button>
+                    </div>
+                </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  

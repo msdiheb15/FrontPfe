@@ -16,16 +16,28 @@ import {
 export class ServicesComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-
   model :any = {};
   data: ServiceDepartment[]=[];
-
+  id : any
+  id_service:any=''
+  lib_service:string=''
 
   exform = new FormGroup({
     libelle_service: new FormControl('',Validators.required)
   })
 
+  putform = new FormGroup({
+    iD_ServiceDepartment: new FormControl('',Validators.required),
+    libelle_service: new FormControl('', Validators.required),
+  })
+
+
+
   get libelle_service(){return this.exform.get('libelle_service')}
+  get iD_ServiceDepartment (){return this.exform.get('iD_ServiceDepartment')}
+
+
+
 
   constructor(private S : ServiceDepartmentService,private _snackBar: MatSnackBar) { }
 
@@ -80,6 +92,34 @@ getService(){
   
 }
 
+
+getServiceById(id : any ):any {
+  this.S.getServiceById(id).subscribe(res => {
+    console.log(id)
+    console.log(res)
+    console.log(res.libelle_service)
+    this.id_service = res.iD_ServiceDepartment
+    this.lib_service=res.libelle_service
+    return res
+  }), (error: any) => {
+    console.log(error)
+  };
+}
+
+
+putService(){
+  console.log(this.putform.value )
+  this.S.putService(this.putform.value).subscribe(res => {
+    console.log(res)
+    this.getService() 
+    
+  }, error => {
+    console.log(error)
+  });
+    
+      
+}
+
 deleteService(id : any ){
 
   this.S.DeleteService(id).subscribe(res => {
@@ -103,15 +143,6 @@ deleteService(id : any ){
   });
 
 }
-
-
-
-
-
-
-
-
-
 
 
 openSnackBar() {

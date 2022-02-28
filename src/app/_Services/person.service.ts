@@ -21,11 +21,15 @@ export class PersonService {
   getpersons(): Observable<Person[]>{
     return this.http.get<Person[]>(this.baseURL + '/GetPerson')
   }
-
+  getpersonById(id: any): Observable<Person> {
+    return this.http.get<Person>(this.baseURL+ `/GetPersonById?id=`+id)
+  }
   deleteperson(id:any){
     return this.http.delete<any>(this.baseURL +`/DeletePerson?id=`+id);
   }
-  UpdatePerson(model:any){
+
+
+  putPerson(model:any){
     return this.http.put(this.baseURL + '/EditPerson',model);
   }
 
