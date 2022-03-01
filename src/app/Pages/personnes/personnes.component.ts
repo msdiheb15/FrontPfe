@@ -72,6 +72,9 @@ export class PersonnesComponent implements OnInit {
  get fk_serviceDepartment(){return this.exform.get('serviceDepartment')}
  get fk_Role(){return this.exform.get('role')}
  get Activation(){return this.exform.get('Activition')}
+
+
+ 
   
   constructor(private PersonService:PersonService  , private RoleService : RoleService , private S : ServiceDepartmentService,private _snackBar: MatSnackBar) { }
 
@@ -79,6 +82,11 @@ export class PersonnesComponent implements OnInit {
     this.getrole()
     this.getService()
     this.getPerson();
+
+
+    
+
+
     
   }
    
@@ -95,12 +103,18 @@ export class PersonnesComponent implements OnInit {
   'Action',
   ];
 
-  dataSource = new MatTableDataSource(this.data);
+
+
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.data.filter(() =>
-      this.data.filter = filterValue.trim().toLowerCase());
+    this.data.filter((i: any) =>
+    {
+    
+  let arr = Object.keys(this.data).map((k) => this.data[k])
+      arr[i].filter = filterValue.toLowerCase()
+    });
   }
 
   getrole(){
@@ -138,7 +152,7 @@ export class PersonnesComponent implements OnInit {
 
  
 getPerson(){
-  this.PersonService.getpersons().subscribe((person) => {
+  this.PersonService.getpersons().subscribe((person: any) => {
   
     this.data = person;
 

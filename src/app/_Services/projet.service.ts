@@ -13,18 +13,22 @@ export class ProjetService {
  baseURL="https://localhost:5001/api/Projet";
   constructor(private http: HttpClient) { }
 
-  addProjet(model:any){
-    return this.http.post(this.baseURL +'/AddProjet',model);
+ 
+  addprojet(model:any){
+    return this.http.post(this.baseURL + '/AddProjet',model);
   }
 
   getprojet(): Observable<Projet[]>{
-    return this.http.get<Projet[]>(this.baseURL +'/GetProjet')
+    return this.http.get<Projet[]>(this.baseURL + '/GetProjet')
+  }
+  getprojetById(id: any): Observable<Projet> {
+    return this.http.get<Projet>(this.baseURL+ `/GetProjetById?id=`+id)
+  }
+  deleteprojet(id:any){
+    return this.http.delete<any>(this.baseURL +`/DeleteProjet?id=`+id);
   }
 
-  Deleteprojet(model:any){
-    return this.http.delete(this.baseURL + '/DeleteProjet',model);
-  }
-  Updateprojet(model:any){
+  putprojet(model:any){
     return this.http.put(this.baseURL + '/EditProjet',model);
   }
 }

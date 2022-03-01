@@ -67,14 +67,18 @@ export class ProjectsComponent implements OnInit {
   
   ];
  
-  applyFilter(event :Event){}
+  applyFilter(event :Event){
+
+
+    
+  }
 
 
 
   addProjet(){
     console.log(this.exform.value)
   
-    this.ProjetService.addProjet(this.exform.value).subscribe(rep =>{
+    this.ProjetService.addprojet(this.exform.value).subscribe(rep =>{
       console.log(rep)
       console.log(this.getprojet())
 
@@ -86,8 +90,14 @@ export class ProjectsComponent implements OnInit {
 
   getprojet(){
     this.ProjetService.getprojet().subscribe(projet => {
+      this.data.map((p: Projet) =>{
+        this.S.getServiceById(p.fK_ServiceDepartment).subscribe(res => {
+          p.serviceDepartment = res.libelle_service
+          console.log(res.libelle_service)
+          console.log(this.data)
+        })
   
-  
+      })
       this.data = projet;
       console.log(this.data)
     }, error => {

@@ -1,19 +1,22 @@
 
-<div id="title" class="center" >
-    <h1>Consulter TimeSheet</h1>
-    </div>
 
-        <div class="container"> 
-          <div class="box">
-            <label for="date-input">Journeé:</label>
-          <div>
-              <input type="date" class="form-control" >
-            </div>
-          </div>
-          
+<div id="title" class="center" >
+  <h1>Consulter TimeSheet</h1>
+  </div>
+<div class="container">
+  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <div class="col">
+      <div class="box">
+        <label for="date-input">Journeé:</label>
+      <div>
+          <input type="date" class="form-control" >
+        </div>
+      </div>
+    </div>
+    <div class="col">
       <div  class="box">
         <label>Service</label>
-        <div  class="col-sm-7">
+        <div  class="col">
           <select name = ServiceDepartment class="form-control"
            type="text" >
           <option value="">Choisissez un service</option>
@@ -21,24 +24,33 @@
           </select>
         </div>
          </div>
-          
-           <div  class="box">
-             <label>Personne</label>
-            <div   class="col-sm-7">
-              <select   name = ServiceDepartment
-               type="text" class="form-control"  >
-              <option value="">Choisissez un personne</option>
-              <option value="">Iheb</option>
-              </select>
-            </div>
-          </div>
+    </div>
+    <div class="col">
+      <div  class="box">
+        <label>Personne</label>
+       <div   class="col">
+         <select   name = ServiceDepartment
+          type="text" class="form-control"  >
+         <option value="">Choisissez un personne</option>
+         <option value="">Iheb</option>
+         </select>
+       </div>
+     </div>
+    </div>
+    <div class="col">
+      <div  class="box">
+        <label>&nbsp;</label>
+       <div   class="col-sm-7">
+        <button   type="submit" class="btn btn-primary">Consulter</button>
+
+       </div>
+     </div>
+    </div>
+
+    
+  </div>
+</div>
 
 
-          <div class="box">
-            <button   type="submit" class="btn btn-primary">Consulter</button>
-          </div>
-          
-          </div>
-           
-    
-    
+
+

@@ -6,7 +6,7 @@
 <button type="button"  data-toggle="modal"
  data-target="#form-add-project" class="btn btn-success"><i class="fa fa-plus"></i>Ajouter un Projet</button>
 </div>
-<div class="center " ><input class="input" matInput (keyup)="applyFilter($event)"  placeholder="Chercher un Projet" #input>
+<div class="center " ><input class="input" matInput (change)="applyFilter($event)"  placeholder="Chercher un Projet" #input>
 </div>
 
 <div class="center">
@@ -15,28 +15,28 @@
         <!-- Name Column -->
         <ng-container matColumnDef="Service">
           <th mat-header-cell *matHeaderCellDef> Service </th>
-          <td mat-cell *matCellDef="let element"> {{element.Service}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.serviceDepartment}} </td>
         </ng-container>
       
            <!-- Name Column -->
            <ng-container matColumnDef="Nom Projet">
             <th mat-header-cell *matHeaderCellDef> Nom Projet </th>
-            <td mat-cell *matCellDef="let element"> {{element.Nom_Projet}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.nom_Projet}} </td>
           </ng-container>
              <!-- Name Column -->
         <ng-container matColumnDef="Nom Client">
             <th mat-header-cell *matHeaderCellDef>Nom Client </th>
-            <td mat-cell *matCellDef="let element"> {{element.Nom_Client}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.nom_Client}} </td>
           </ng-container>
              <!-- Name Column -->
         <ng-container matColumnDef="Description">
           <th mat-header-cell *matHeaderCellDef>Description </th>
-          <td mat-cell *matCellDef="let element"> {{element.Description}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.description_projet}} </td>
         </ng-container>
              <!-- Name Column -->
         <ng-container matColumnDef="Etat_projet">
             <th mat-header-cell *matHeaderCellDef> Etat projet </th>
-            <td mat-cell *matCellDef="let element"> {{element.Etat_projet}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.etat_projet}} </td>
           </ng-container>
              <!-- Name Column -->
         <ng-container matColumnDef="Date Estime">

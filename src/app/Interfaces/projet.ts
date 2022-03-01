@@ -17,7 +17,9 @@ export interface Projet {
 
     fin_estimej:Date,
 
-    fk_ServiceDepartment:string,
+    fK_ServiceDepartment: string,
+
+    serviceDepartment: string
     
 }
 
