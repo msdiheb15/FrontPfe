@@ -156,7 +156,7 @@
                    
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-primary"   data-dismiss="modal" [disabled]="exform.invalid">Ajouter Projet</button>
+                    <button (click)="addProjet()" type="submit" class="btn btn-primary"   data-dismiss="modal" [disabled]="exform.invalid">Ajouter Projet</button>
                   </div>
              </form>
         </div>
