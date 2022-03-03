@@ -7,26 +7,31 @@ import { Tache } from '../Interfaces/tache';
 @Injectable({
   providedIn: 'root'
 })
-export class TimeSheetService {
-    TimeSheet:any
+export class TacheService {
+    tache:any
 
  baseURL="https://localhost:5001/api/Tache";
   constructor(private http: HttpClient) { }
 
 
-   addTache(model:any){
-    return this.http.post(this.baseURL +'/AddTache',model);
+   
+  addTache(model:any){
+    return this.http.post(this.baseURL + '/AddTache',model);
   }
 
   getTache(): Observable<Tache[]>{
-    return this.http.get<Tache[]>(this.baseURL +'/GetTache')
+    return this.http.get<Tache[]>(this.baseURL+ '/GetTache')
+  }
+  getTacheById(id: any): Observable<Tache> {
+    return this.http.get<Tache>(this.baseURL+'/GetTacheById?id='+id)
+  }
+  deleteTache(id: any){
+    return this.http.delete<any>(this.baseURL+ '/DeleteTache?id='+id)
   }
 
-  DeleteTache(model:any){
-    return this.http.delete(this.baseURL + '/DeleteTache',model);
+  putTache(model:any){
+    return this.http.put<any>(this.baseURL + '/EditTache',model);
   }
-  UpdateTache(model:any){
-    return this.http.put(this.baseURL + '/EditTache',model);
-  }
+
 
 }

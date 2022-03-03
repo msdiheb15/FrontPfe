@@ -2,11 +2,19 @@
 <div id="title" class="center" >
   <h1>Gestion des projets</h1>
   </div>
-<div class="btn_ajout">
-<button type="button"  data-toggle="modal"
+
+
+
+
+
+<div class="row">
+  <div class="col"></div>
+  <div class="btn_ajout">
+    <button type="button"  data-toggle="modal"
  data-target="#form-add-project" class="btn btn-success"><i class="fa fa-plus"></i>Ajouter un Projet</button>
-</div>
-<div class="center " ><input class="input" matInput (change)="applyFilter($event)"  placeholder="Chercher un Projet" #input>
+    </div>
+  <div class="col"><input class="input" matInput (change)="applyFilter($event)"  placeholder="Chercher un Projet" #input></div>
+  <div class="col"></div>
 </div>
 
 <div class="center">

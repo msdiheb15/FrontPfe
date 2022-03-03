@@ -7,10 +7,29 @@ table {
       justify-content: center;
       align-items: center;
   }
-  .btn{
-      margin: 10px;
-  }
+
 #title{
     font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 100;
 }
+
+.btn{
+    margin: 5px;
+  }
+  
+  
+  #title{
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 100;
+    margin-bottom: 100px;
+  }
+  
+  .bg-primary {
+    background-color: #0F172A!important;
+  }
+  tr.mat-header-row {
+    background-color: #0F172A!important;
+  }
+  .mat-header-cell {
+    color: #f8f9fa;
+  }

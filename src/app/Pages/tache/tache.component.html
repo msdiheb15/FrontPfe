@@ -2,37 +2,53 @@
 <div id="title" class="center" >
     <h1>Liste des Tâches </h1>
     </div>
-  <div class="btn">
-  <button type="button"  data-toggle="modal"
-   data-target="#form-add-project" class="btn btn-success"><i class="fa fa-plus"></i>Ajouter D'une Tâche</button>
+
+
+  <div class="row">
+    <div class="col"></div>
+    <div class="btn_ajout">
+      <button type="button"  data-toggle="modal"
+   data-target="#form-add-tache" class="btn btn-success"><i class="fa fa-plus"></i>Ajouter D'une Tâche</button>
+      </div>
+    <div class="col"></div>
+    <div class="col"></div>
   </div>
+
+
+
   <div class="center">
       
-      <table mat-table [dataSource]="dataSource"  matSort class="mat-elevation-z8">    
+      <table mat-table [dataSource]="data"  matSort class="mat-elevation-z8">    
           <!-- Name Column -->
           <ng-container matColumnDef="Service">
             <th mat-header-cell *matHeaderCellDef> Service </th>
-            <td mat-cell *matCellDef="let element"> {{element.Service}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.serviceDepartment}} </td>
           </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="Tache">
                 <th mat-header-cell *matHeaderCellDef> Nom  Tâche </th>
-                <td mat-cell *matCellDef="let element"> {{element.Nom_Tache}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.nom_tache}} </td>
               </ng-container>
                 <!-- Name Column -->
           <ng-container matColumnDef="Description Tache">
             <th mat-header-cell *matHeaderCellDef>  Description  Tâches </th>
-            <td mat-cell *matCellDef="let element"> {{element.Description_Tache}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.discription}} </td>
           </ng-container>
         
    
-            <ng-container matColumnDef="Action">
-              <th mat-header-cell *matHeaderCellDef> Action </th>
+          <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
             <td  mat-cell *matCellDef="let element">
-            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-            <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
-            </td>
-            </ng-container>
+              <button type="button"  data-toggle="modal" (click)="getTacheById(element.iD_Taches)"
+               data-target="#form-update-tache"  class="btn btn-primary"><i class="fa fa-edit" ></i></button>
+
+
+
+              <button (click)="deleteTache(element.iD_Taches)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+              
+              </td>
+          </ng-container>
+
   
     
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -41,7 +57,7 @@
       </div>
   
   
-  <div data-backdrop="false" class="modal fade" id="form-add-project"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div data-backdrop="false" class="modal fade" id="form-add-tache"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header bg-primary text-white ">
@@ -51,16 +67,17 @@
             </button>
           </div>
           <div class="modal-body">
-              <form [formGroup]="exform" class = 'normal-form' #TacheAdd="ngForm">
+              <form [formGroup]="exform" class = 'normal-form' (ngSubmit)="addTache()" #TacheAdd="ngForm">
                 <div class="form-group row">
-                  <label  class="col-sm-4 col-form-label">Service Department :</label>
+                  <label  class="col-sm-4 col-form-label">Service  :</label>
                   <div class="col-sm-7">
-                    <select  type="text" class="form-control"  >
-                    <option value="--Please choose an option--">--Choisisez une option--</option>
-                    <option value="">marketing</option>
+                    <select name = ServiceDepartment formControlName="fk_serviceDepartment"
+                     type="text" class="form-control"  >
+                     <option >Choisir un service </option>
+                     <option *ngFor="let serviceDepartment of dataService" [value]="serviceDepartment.iD_ServiceDepartment">{{serviceDepartment.libelle_service}}</option>
                     </select>
                   </div>
-                </div>
+                     </div>
                     <div class="form-group row">
                       <label  class="col-sm-4 col-form-label">Nom Tâche</label>
                       <div class="col-sm-7">
@@ -71,8 +88,8 @@
                     <div class="form-group row">
                       <label  class="col-sm-4 col-form-label">Description</label>
                       <div class="col-sm-7">
-                        <input formControlName="description" matInput name="Description" [(ngModel)]="model.Description" type="text"  class="form-control"  placeholder="Description">
-                        <mat-error *ngIf="description?.invalid && description?.touched">Description est requis </mat-error>
+                        <input formControlName="discription" matInput name="discription" [(ngModel)]="model.discription" type="text"  class="form-control"  placeholder="Description">
+                        <mat-error *ngIf="discription?.invalid && discription?.touched">Description est requis </mat-error>
                       </div>
                     </div>
               
@@ -80,8 +97,62 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-            <button type="button" class="btn btn-primary">Ajouter Tache</button>
+            <button (click)="addTache()" type="button" data-dismiss="modal" class="btn btn-primary">Ajouter Tache</button>
           </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div data-backdrop="false" class="modal fade" id="form-update-tache"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white ">
+            <h5 class="modal-title" id="exampleModalLabel">Modifier {{lib_tache}}</h5>
+            <button class="bg-white text-white" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <form [formGroup]="putform" class = 'normal-form' (ngSubmit)="putTache()" #TacheAdd="ngForm">
+                <div class="form-group row">
+                  <label  class="col-sm-4 col-form-label">Service  :</label>
+                  <div class="col-sm-7">
+                    <select name = ServiceDepartment formControlName="fk_serviceDepartment"
+                     type="text" class="form-control"  >
+                     <option >Choisir un service </option>
+                     <option *ngFor="let serviceDepartment of dataService" [value]="serviceDepartment.iD_ServiceDepartment">{{serviceDepartment.libelle_service}}</option>
+                    </select>
+                  </div>
+                     </div>
+                    <div class="form-group row">
+                      <label  class="col-sm-4 col-form-label">Nom Tâche</label>
+                      <div class="col-sm-7">
+                        <input formControlName="nom_tache" matInput name="Nom_tache" [(ngModel)]="model.Nom_tache" type="text"  class="form-control"  placeholder="Nom Tâche">
+                        <mat-error *ngIf="nom_tache?.invalid && nom_tache?.touched">Tache est requis </mat-error>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label  class="col-sm-4 col-form-label">Description</label>
+                      <div class="col-sm-7">
+                        <input formControlName="discription" matInput name="discription" [(ngModel)]="model.discription" type="text"  class="form-control"  placeholder="Description">
+                        <mat-error *ngIf="discription?.invalid && discription?.touched">Description est requis </mat-error>
+                      </div>
+                    </div>
+                    <div class="form-group row"  [style.visibility]="'hidden'" >
+                      <div class="col-sm-7">
+                        <input height="0px"  formControlName="iD_Taches"   [(ngModel)]="id_tache"
+                         type="text" value="{{id_tache}}">
+                      </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button (click)="putTache()" type="button" data-dismiss="modal" class="btn btn-primary">Editer Tache</button>
+                      </div>
+                </form>
+          </div>
+          
         </div>
       </div>
     </div>

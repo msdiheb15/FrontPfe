@@ -1,11 +1,13 @@
 export interface Tache {
-    ID_Taches: string,
+    iD_Taches: string,
 
-    Service: string,
-
-    Nom_Tache: string,
+    nom_tache: string,
     
-    Description_Tache: string,
+    discription: string,
+
+    fK_ServiceDepartment: string,
+
+    serviceDepartment: string
   
 }
 

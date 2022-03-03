@@ -71,6 +71,7 @@ export class RolesComponent implements OnInit {
           this._snackBar.open('Ajout sucessl!!', 'Dismiss', {
             horizontalPosition: this.horizontalPosition,
             verticalPosition: this.verticalPosition,
+            duration:3000
           });
         }
   
@@ -83,6 +84,7 @@ export class RolesComponent implements OnInit {
       this._snackBar.open('Ajout fail!!', 'Dismiss', {
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
+        duration:3000
       });
     }
   });
