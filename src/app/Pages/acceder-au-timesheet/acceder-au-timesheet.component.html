@@ -1,61 +1,167 @@
-<div class="container-fluid page">
-  <div class="page__content shadow  position-relative">
-    <div class="d-flex flex-row">
-      <img class="p-1" height="100px" width="150px" src='../../../assets/calendar.jpg' />
-    </div>
-    <div class="p-2 text-white bg-primary d-flex justify-content-center">Consulter et Saisir TimeSheet</div>
-    <form>
-      <div class="form-group p-2">
-        <label for="date-input">Journeé:</label>
-        <input type="date" class="form-control" id="date-input" aria-describedby="emailHelp" placeholder="Enter email">
-      </div>
-      <button type="button" (click)="toogleTag()" class="btn btn-primary ml-3">Ajouter</button>
-      <button type="button"  class="btn btn-success ml-3">Acceder</button>
-      <hr>
-    </form>
-    <form *ngIf="showMe">
-      <div class="form-row pt-5">
-        <div class="form-group col-md-2">
-          <label>Heure Debut</label>
-          <input type="time" class="form-control">
-        </div>
-        <div class="form-group col-md-2">
-          <label>Heure Fin</label>
-          <input type="time" class="form-control">
-        </div>
-        <div class="form-group col-md-2">
-          <label>Nom project</label>
-          <select class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-        </div>
-        <div class="form-group col-md-2">
-          <label>Tache</label>
-          <select class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-        </div>
-        
-        <div class="form-group col-md-2">
-          <label>Description</label>
-          <input class="form-control" placeholder="Description Timesheet">
-        </div>
-        <div class="form-group col-md-2">
-          <label for="inputPassword4">&nbsp; &nbsp; &nbsp; &nbsp; </label>
-          <div class="pb-5">
-            
-            <button class="btn-a  "><i class="fas fa-plus-circle"></i></button>
-            <button class="btn-c btn-a"><i class="fa fa-trash"></i></button>
-
-          </div>
- 
-        </div>
-      </div>
-    </form>
-
-
+<div id="title" class="center" >
+  <h1>Consulter et Saisir TimeSheet</h1>
   </div>
 
-</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <button type="button"   data-toggle="modal" data-target="#form-add-sheet" class="btn btn btn-success"><i class="fa fa-plus"></i>Ajouter TimeSheet</button>
+          
+        </div>
+
+        <form [formGroup]="creatnowform">
+          <div class="col-sm">
+           <div class="form-group p-2">
+            <div class="form-group row">
+              <button (click)="getTimeSheet()" class="btn btn-primary"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+              <button (click)="getTimeSheetbydate()" class="btn btn-primary"><i class="fa fa-plus"></i>Acceder</button>
+                   <div class="col-sm-8">
+                    <input formControlName="creatnow"  matInput name = creatnow ngModel="createNowDate"
+                    type="date"     class="form-control"  id="date-input"  placeholder="creatnow" >
+                     <mat-error *ngIf="creatnow?.invalid && creatnow?.touched"> heure debut est requis </mat-error>
+                     </div>
+            </div>
+           </div>
+        
+           </div>
+         </form>
+      </div>
+    </div>
+
+    
+    <div class="center">
+      <table mat-table [dataSource]="data"  matSort class="mat-elevation-z8">    
+           <!-- Name Column -->
+           <ng-container matColumnDef="createdNow">
+            <th mat-header-cell *matHeaderCellDef> Creer le </th>
+            <td mat-cell *matCellDef="let element"> {{element.createdNow}} </td>
+          </ng-container>
+         <!-- Name Column -->
+         <ng-container matColumnDef="Projet">
+          <th mat-header-cell *matHeaderCellDef> Projet  </th>
+          <td mat-cell *matCellDef="let element"> {{element.projet}} </td>
+        </ng-container>
+         <!-- Name Column -->
+         <ng-container matColumnDef="Tache">
+          <th mat-header-cell *matHeaderCellDef> Tache  </th>
+          <td mat-cell *matCellDef="let element"> {{element.tache}} </td>
+        </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="discription">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          </ng-container>
+          <!-- Name Column -->
+         <ng-container matColumnDef="heure_debut">
+          <th mat-header-cell *matHeaderCellDef> heure Debut </th>
+          <td mat-cell *matCellDef="let element"> {{element.heure_debut}} </td>
+        </ng-container>
+         <!-- Name Column -->
+         <ng-container matColumnDef="heure_fin">
+          <th mat-header-cell *matHeaderCellDef> heure Fin </th>
+          <td mat-cell *matCellDef="let element"> {{element.heure_fin}} </td>
+        </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="Action">
+              <th mat-header-cell *matHeaderCellDef> Delete </th>
+            <td  mat-cell *matCellDef="let element">
+              <button (click)="DeleteTimesheet(element.iD_TimesSheet)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+            </td>
+            </ng-container>
+  
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+
+
+
+
+
+
+    <div data-backdrop="false" class="modal fade" id="form-add-sheet"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white ">
+            <h5 class="modal-title" id="exampleModalLabel">Details du TimeSheet</h5>
+            <button class="bg-white text-white" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class = 'normal-form' [formGroup]="exform">
+              
+                <div class="form-group row">
+                  <label  class="col-sm-4 col-form-label">heure debut</label>
+                       <div class="col-sm-7">
+                        <input formControlName="heure_debut"  matInput name = heure_debut
+                        type="time"   class="form-control"  placeholder="heure_debut">
+                         <mat-error *ngIf="heure_debut?.invalid && heure_debut?.touched"> heure debut est requis </mat-error>
+                         </div>
+                </div>
+        
+                <div class="form-group row">
+                  <label  class="col-sm-4 col-form-label">Heure fin</label>
+                       <div class="col-sm-7">
+                        <input formControlName="heure_fin"  matInput name = heure_fin
+                        type="time"   class="form-control"  placeholder="heure_fin">
+                         <mat-error *ngIf="heure_fin?.invalid && heure_fin?.touched"> heure fin est requis </mat-error>
+                         </div>
+                </div>
+        
+                <div class="form-group row">
+                  <label  class="col-sm-4 col-form-label">projet</label>
+                  <div class="col-sm-7">
+                    <select name = Role formControlName="fk_Projet"
+                 type="text" class="form-control"  >
+                     <option >Choisir votre role </option>
+                    <option *ngFor="let projet of dataprojet" [value]="projet.iD_Projet">{{projet.nom_Projet}}</option>
+                
+                    </select>
+                  </div>
+                </div>
+        
+                <div class="form-group row">
+                 <label  class="col-sm-4 col-form-label">tache </label>
+                   <div class="col-sm-7">
+                   <select name = tache formControlName="fk_Tache"
+                     type="text" class="form-control"  >
+                    <option >Choisir votre role </option>
+                     <option *ngFor="let tache of datatache" [value]="tache.iD_Taches">{{tache.nom_tache}}</option>
+                      </select>
+                        </div>
+                        </div>
+        
+                       <div class="form-group row">
+                        <label  class="col-sm-4 col-form-label">description</label>
+                       <div class="col-sm-7">
+                        <input formControlName="description"  matInput name = description
+                        type="text"   class="form-control"  placeholder="description">
+                         <mat-error *ngIf="description?.invalid && description?.touched"> La description est requis </mat-error>
+                         </div>
+                        </div>
+                           
+                        <div class="form-group row">
+                          <label  class="col-sm-4 col-form-label">fK_Person</label>
+                         <div class="col-sm-7">
+                          <input formControlName="fK_Person"  matInput name = fK_Person
+                          type="text"  >                           
+                           </div>
+                          </div>
+                          &nbsp;
+        
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+                    <button (click)="addTimeSheet()" type="submit" class="btn btn-primary" data-dismiss="modal" >Ajouter</button>
+                  
+              
+            </form>
+          </div>
+        
+        </div>
+      </div>  
+    </div>
+

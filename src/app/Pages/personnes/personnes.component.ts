@@ -81,13 +81,7 @@ export class PersonnesComponent implements OnInit {
   ngOnInit(): void {
     this.getrole()
     this.getService()
-    this.getPerson();
-
-
-    
-
-
-    
+    this.getPerson() 
   }
    
 
@@ -167,6 +161,7 @@ getPerson(){
       })
 
     })
+    this.exform.reset();
 
 
      }, (error: any) => {

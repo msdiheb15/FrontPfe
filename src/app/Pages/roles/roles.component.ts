@@ -76,6 +76,7 @@ export class RolesComponent implements OnInit {
         }
   
       console.log(this.getrole())
+      this.exform.reset();
     
     
   }, error => {

@@ -137,7 +137,7 @@ export class ProjectsComponent implements OnInit {
         })
   
       })
-      
+      this.exform.reset();
       console.log(this.data)
     }, error => {
       console.log(error)

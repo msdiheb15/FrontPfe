@@ -84,6 +84,7 @@ export class TacheComponent implements OnInit {
     this.TacheService.addTache(this.exform.value).subscribe(rep =>{
       console.log(rep)
       console.log(this.getTache())
+      this.exform.reset();
 
     }, error => {
       console.log(error)

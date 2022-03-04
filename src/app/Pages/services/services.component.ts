@@ -70,6 +70,7 @@ export class ServicesComponent implements OnInit {
         duration:3000
       });
     }
+    this.exform.reset();
   }, error => {
     console.log(error)
   });
