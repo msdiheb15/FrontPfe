@@ -18,6 +18,7 @@ export class ValidationTimeSheetsComponent implements OnInit {
   dataService :ServiceDepartment[]=[];
   dataPersonne :Person[]=[];
   data:any=[];
+  putdata:any=[];
   id_service :any
   modelTimeSheet!: TimeSheet;
 
@@ -75,8 +76,10 @@ export class ValidationTimeSheetsComponent implements OnInit {
   getTimeSheetByPerson(){
     var personId = ((document.getElementById("personId") as HTMLInputElement).value);
     this.TimeSheetService.getTimeSheet(personId).subscribe((TimeSheet: any) => {
-  
+
+      this.putdata=TimeSheet
     this.data = TimeSheet;
+    
      console.log(this.data)
 
      this.data.map((p: TimeSheet) =>{
@@ -130,28 +133,24 @@ export class ValidationTimeSheetsComponent implements OnInit {
         return date.split('-').reverse().join("/"); // Reverse the date
     }
 
-  ValidateTimeSheet(timesheet: TimeSheet){
-    console.log(timesheet.validation)
-    timesheet.validation = !timesheet.validation
-    console.log(timesheet.validation)
+  ValidateTimeSheet(id:any){
     
-    /*this.modelTimeSheet.createdNow = this.GetFormatedDate()
-    this.modelTimeSheet.discription = timesheet.discription
-    this.modelTimeSheet.fK_Projet = timesheet.fK_Projet
-    this.modelTimeSheet.fK_Tache = timesheet.fK_Tache
-    this.modelTimeSheet.fK_person = timesheet.fK_person
-    this.modelTimeSheet.heure_debut = timesheet.heure_debut
-    this.modelTimeSheet.heure_fin = timesheet.heure_fin
-    this.modelTimeSheet.iD_TimesSheet = timesheet.iD_TimesSheet
-    this.modelTimeSheet.validation = timesheet.validation
-
-    this.TimeSheetService.putTimeSheet(this.modelTimeSheet).subscribe(res => {
-      console.log(res)
-      this.data = res;
-    }, (error: any) => {
-      console.log(error)
-    });*/
-
-  }
+    console.log(id)
+    this.TimeSheetService.getTimeSheet('8989F7F3-C846-4DC6-0FEF-08D9FE028299').subscribe((TimeSheet: any) => {
+      console.log(TimeSheet)
+       var putdata=TimeSheet.filter((x:any)=>{
+        return x.iD_TimesSheet==id
+         },
+       )[0]
+       
+       console.log(putdata)
+       putdata.validation=!putdata.validation
+      console.log(putdata)
+      this.TimeSheetService.putTimeSheet(putdata).subscribe(res=>console.log(res))
+      
+      
+      
+      })
+   }
 
 }

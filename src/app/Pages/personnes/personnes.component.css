@@ -33,3 +33,6 @@ table {
   .mat-header-cell {
     color: #f8f9fa;
   }
+
+  .pagination {margin-top: 10px;
+  margin-left: 100px;}

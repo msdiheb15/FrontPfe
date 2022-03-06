@@ -82,6 +82,7 @@ export class PersonnesComponent implements OnInit {
     this.getrole()
     this.getService()
     this.getPerson() 
+ 
   }
    
 
@@ -110,6 +111,10 @@ export class PersonnesComponent implements OnInit {
       arr[i].filter = filterValue.toLowerCase()
     });
   }
+
+
+
+
 
   getrole(){
     this.RoleService.getrole().subscribe(Role => {
@@ -162,6 +167,7 @@ getPerson(){
 
     })
     this.exform.reset();
+    return this.data
 
 
      }, (error: any) => {

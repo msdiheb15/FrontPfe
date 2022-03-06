@@ -32,7 +32,6 @@ export class TimeSheetService {
     return this.http.delete<any>(this.baseURL + '/DeleteTimesSheet?id='+id);
   }
    putTimeSheet(model:any){
-     console.log(model)
     return this.http.put<TimeSheet[]>(this.baseURL + '/EditTimesSheet',model);
   }
 
