@@ -33,4 +33,8 @@ export class PersonService {
     return this.http.put(this.baseURL + '/EditPerson',model);
   }
 
+  GetPersonByService(id: any): Observable<Person> {
+    return this.http.get<Person>(this.baseURL+ `/GetPersonByService?fk_service=`+id)
+  }
+
 }

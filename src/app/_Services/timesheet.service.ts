@@ -18,21 +18,22 @@ export class TimeSheetService {
     return this.http.post(this.baseURL + '/AddTimesSheet',model);
   }
 
-  getTimeSheet(): Observable<TimeSheet[]>{
-    return this.http.get<TimeSheet[]>(this.baseURL + '/GetTimesSheet')
+  getTimeSheet(personId: any): Observable<TimeSheet[]>{
+    return this.http.get<TimeSheet[]>(this.baseURL + '/GetTimesSheetByPerson?id_Person='+personId)
   }
   getTimeSheetById(id: any): Observable<TimeSheet> {
     return this.http.get<TimeSheet>(this.baseURL+ `/GetTimesSheetById?id=`+id)
   }
-  getTimeSheetbyDate(date: any): Observable<TimeSheet[]> {
+  getTimeSheetbyDate(date: any, personId: any): Observable<TimeSheet[]> {
     console.log(date)
-    return this.http.get<TimeSheet[]>(this.baseURL+"/GetTimesSheetbyDate?date="+date)
+    return this.http.get<TimeSheet[]>(this.baseURL+"/GetTimesSheetbyDate?date="+date+"&personId="+personId)
   }
   DeleteTimeSheet(id: any){
     return this.http.delete<any>(this.baseURL + '/DeleteTimesSheet?id='+id);
   }
    putTimeSheet(model:any){
-    return this.http.put<any>(this.baseURL + '/EditTimesSheet',model);
+     console.log(model)
+    return this.http.put<TimeSheet[]>(this.baseURL + '/EditTimesSheet',model);
   }
 
 }

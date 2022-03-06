@@ -126,7 +126,7 @@ get creatnow(){return this.exform.get('creatnow')}
 
 
   getTimeSheet(){
-    this.TimeSheetService.getTimeSheet().subscribe((TimeSheet: any) => {
+    this.TimeSheetService.getTimeSheet('63D57BCA-4676-4FAF-9848-08D9FDD98EEA').subscribe((TimeSheet: any) => {
   
     this.data = TimeSheet;
      console.log(this.data)
@@ -154,7 +154,7 @@ get creatnow(){return this.exform.get('creatnow')}
   getTimeSheetbydate(){
     var createNowDate = ((document.getElementById("date-input") as HTMLInputElement).value);
     console.log(this.GetFormatedDate(createNowDate))
-    this.TimeSheetService.getTimeSheetbyDate(this.GetFormatedDate(createNowDate)).subscribe((TimeSheet: any) => {
+    this.TimeSheetService.getTimeSheetbyDate(this.GetFormatedDate(createNowDate), "63D57BCA-4676-4FAF-9848-08D9FDD98EEA").subscribe((TimeSheet: any) => {
   
     this.data = TimeSheet;
      console.log(this.data)

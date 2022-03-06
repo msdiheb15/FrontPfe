@@ -3,45 +3,47 @@
 <div id="title" class="center" >
   <h1>Consulter TimeSheet</h1>
   </div>
+
 <div class="container">
   <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-    <div class="col">
-      <div class="box">
-        <label for="date-input">Journeé:</label>
-      <div>
-          <input type="date" class="form-control" >
-        </div>
-      </div>
-    </div>
+    
     <div class="col">
       <div  class="box">
         <label>Service</label>
         <div  class="col">
-          <select name = ServiceDepartment class="form-control"
-           type="text" >
-          <option value="">Choisissez un service</option>
-          <option value="">marketing</option>
-          </select>
+          <select name = ServiceDepartment id="listservices"
+                   type="text" class="form-control" (change)="GetPersonByService()" >
+                   <option >Choisir un service </option>
+                   <option *ngFor="let serviceDepartment of dataService" [value]="serviceDepartment.iD_ServiceDepartment">{{serviceDepartment.libelle_service}}</option>
+            </select>
         </div>
          </div>
     </div>
     <div class="col">
       <div  class="box">
         <label>Personne</label>
-       <div   class="col">
-         <select   name = ServiceDepartment
-          type="text" class="form-control"  >
-         <option value="">Choisissez un personne</option>
-         <option value="">Iheb</option>
-         </select>
+       <div class="col">
+        <select name = Personne id="personId"
+        type="text" class="form-control" (change)="getTimeSheetByPerson()"  >
+        <option >Choisir un Personne </option>
+        <option *ngFor="let Personne of dataPersonne" [value]="Personne.iD_person">{{Personne.firstName}}</option>
+        </select>
        </div>
      </div>
+    </div>
+    <div class="col">
+      <div class="box">
+        <label for="date-input">Journeé:</label>
+      <div>
+        <input   matInput name = creatnow  type="date"  class="form-control"  id="date-input"  placeholder="creatnow" >
+        </div>
+      </div>
     </div>
     <div class="col">
       <div  class="box">
         <label>&nbsp;</label>
        <div   class="col-sm-7">
-        <button   type="submit" class="btn btn-primary">Consulter</button>
+        <button  (click)="getTimeSheetbydate()" type="submit" class="btn btn-primary">Consulter</button>
 
        </div>
      </div>
@@ -52,5 +54,55 @@
 </div>
 
 
+    <div class="center">
+      <table mat-table [dataSource]="data"  matSort class="mat-elevation-z8">    
+           <!-- Name Column -->
+           <ng-container matColumnDef="createdNow">
+            <th mat-header-cell *matHeaderCellDef> Creer le </th>
+            <td mat-cell *matCellDef="let element"> {{element.createdNow}} </td>
+          </ng-container>
+         <!-- Name Column -->
+         <ng-container matColumnDef="Projet">
+          <th mat-header-cell *matHeaderCellDef> Projet  </th>
+          <td mat-cell *matCellDef="let element"> {{element.projet}} </td>
+        </ng-container>
+         <!-- Name Column -->
+         <ng-container matColumnDef="Tache">
+          <th mat-header-cell *matHeaderCellDef> Tache  </th>
+          <td mat-cell *matCellDef="let element"> {{element.tache}} </td>
+        </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="discription">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          </ng-container>
+          <!-- Name Column -->
+         <ng-container matColumnDef="heure_debut">
+          <th mat-header-cell *matHeaderCellDef> heure Debut </th>
+          <td mat-cell *matCellDef="let element"> {{element.heure_debut}} </td>
+        </ng-container>
+         <!-- Name Column -->
+         <ng-container matColumnDef="heure_fin">
+          <th mat-header-cell *matHeaderCellDef> heure Fin </th>
+          <td mat-cell *matCellDef="let element"> {{element.heure_fin}} </td>
+        </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="Action">
+              <th mat-header-cell *matHeaderCellDef> validation </th>
+            <td  mat-cell *matCellDef="let element">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" (change)="ValidateTimeSheet(element)">
+                <label class="form-check-label" for="exampleCheck1"></label>
+              </div>
+            </td>
+            </ng-container>
+  
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
 
 
