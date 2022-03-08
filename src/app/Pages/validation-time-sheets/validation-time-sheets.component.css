@@ -11,7 +11,7 @@ table {
 
 #date-input {
     height: 50px;
-    width: 500px;
+    width: 400px;
 }
 
 
@@ -19,7 +19,10 @@ table {
   font-family: "Segoe UI",Arial,sans-serif;
   font-weight: 100;
 }
-
+.container_inline {
+  display: inline;
+  float: right;
+}
 
 .btn{
   margin: 5px;

@@ -33,7 +33,7 @@ export class PersonnesComponent implements OnInit {
   id_person:any=''
   lib_FirstName:string=''
   arrayTo : any = {}
-
+  Mat_Array : any = []
 
   
   exform = new FormGroup({
@@ -61,6 +61,7 @@ export class PersonnesComponent implements OnInit {
     fk_Role : new FormControl('',Validators.required),
     Activation : new FormControl('')
   })
+  dataSource: any;
 
 
 
@@ -98,20 +99,16 @@ export class PersonnesComponent implements OnInit {
    'ServiceDepartment',
   'Action',
   ];
-
-
-
-
+  
+  
 
   applyFilter(event: Event) {
+    //dataSource = new MatTableDataSource(this.Mat_Array.push());
+
     const filterValue = (event.target as HTMLInputElement).value;
-    this.data.filter((i: any) =>
-    {
-    
-  let arr = Object.keys(this.data).map((k) => this.data[k])
-      arr[i].filter = filterValue.toLowerCase()
-    });
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
 
 
 

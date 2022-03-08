@@ -12,17 +12,22 @@ table {
       height: 50px;
       width: 500px;
   }
-
-  
+  .form-group.row > button {
+  float: right;
+  margin: 5px;
+}
+  .container {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 #title{
     font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 100;
 }
 
 
-.btn{
-    margin: 5px;
-  }
   
   
   #title{
