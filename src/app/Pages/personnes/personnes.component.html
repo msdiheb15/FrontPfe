@@ -201,14 +201,14 @@
                         <label  class="col-sm-4 col-form-label">Prénom :</label>
                         <div class="col-sm-7">
                           <input  formControlName="FirstName" matInput name = "First_name" 
-                           type="text"  class="form-control"  placeholder="Prénom">
-                          <mat-error *ngIf="FirstName?.invalid && FirstName?.touched"> Entrez votre Prénom </mat-error>
+                           type="text"  class="form-control"  placeholder="Prénom" [value]="arrayTo.firstName">
+                          <mat-error  *ngIf="FirstName?.invalid && FirstName?.touched"> Entrez votre Prénom </mat-error>
                         </div>
                       </div> 
                       <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Nom :</label>
                         <div class="col-sm-7">
-                          <input  formControlName="lastName" matInput name = LastName
+                          <input  formControlName="lastName" matInput name = LastName [value]="arrayTo.lastName"
                          type="text"  class="form-control"  placeholder="Nom">
                           <mat-error *ngIf="lastName?.invalid && lastName?.touched">Entrez votre nom  </mat-error>
                         </div>
@@ -216,7 +216,7 @@
                       <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Email :</label>
                         <div class="col-sm-7">
-                          <input formControlName="login" matInput name = Login
+                          <input formControlName="login" matInput name = Login [value]="arrayTo.login"
                            type="text"  class="form-control"  placeholder="Email">
                           <mat-error *ngIf="login?.invalid && login?.touched">Email est requis </mat-error>
                         </div>
@@ -224,7 +224,7 @@
                       <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Mot de passe :</label>
                         <div class="col-sm-7">
-                          <input formControlName="password" name="Password"  matInput [type]="hide ? 'password' : 'text'">
+                          <input formControlName="password" name="Password" [value]="arrayTo.password" matInput [type]="hide ? 'password' : 'text'">
                           <i class="material-icons" matSuffix (click)="hide = !hide">
                             {{hide ? 'visibility':'visibility_off'}}
                           </i>
@@ -235,7 +235,7 @@
                        <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Cin :</label>
                         <div class="col-sm-7">
-                          <input formControlName="cin" matInput name = Cin
+                          <input formControlName="cin" matInput name = Cin [value]="arrayTo.cin"
                            type="text"  class="form-control"  placeholder="cin">
                           <mat-error *ngIf="cin?.invalid && cin?.touched">Cin est requis </mat-error>
                           <mat-error *ngIf="exform.controls['cin'].errors?.minlength && exform.controls['cin'].errors?.maxlength">Minimum 8 caractères requis.</mat-error>
@@ -245,8 +245,8 @@
                       <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Adresse :</label>
                         <div class="col-sm-7">
-                          <input formControlName="adresse" matInput name = Adresse
-                           type="text" class="form-control"  placeholder="Adresse">
+                          <input formControlName="adresse" matInput name = Adresse [value]="arrayTo.adresse"
+                           type="text"  class="form-control"  placeholder="Adresse">
                           <mat-error *ngIf="adresse?.invalid && adresse?.touched">Adresse est requis </mat-error>
                         </div>
                       </div>
@@ -265,7 +265,7 @@
                       <div class="form-group row">
                         <label  class="col-sm-4 col-form-label">Service Department :</label>
                         <div class="col-sm-7">
-                          <select name = ServiceDepartment formControlName="fk_serviceDepartment"
+                          <select name = ServiceDepartment formControlName="fk_serviceDepartment" [value]="arrayTo.service"
                            type="text" class="form-control"  >
                            <option >Choisir un service </option>
                            <option *ngFor="let serviceDepartment of dataService" [value]="serviceDepartment.iD_ServiceDepartment">{{serviceDepartment.libelle_service}}</option>
@@ -277,7 +277,7 @@
                         <label  class="col-sm-4 col-form-label">Activation :</label>
                         <div class="col-sm-7">
                           <input name = Activation
-                           type="checkbox" class="form-control" formControlName="Activation"  >
+                           type="checkbox" class="form-control" formControlName="Activation" [checked]="arrayTo.activation"  >
                         </div>
                       </div>
                       <div class="modal-footer">

@@ -32,6 +32,7 @@ export class PersonnesComponent implements OnInit {
   userRole: string = ""
   id_person:any=''
   lib_FirstName:string=''
+  arrayTo : any = {}
 
 
   
@@ -177,11 +178,13 @@ getPerson(){
 
 getpersonById(id : any ):any {
   this.PersonService.getpersonById(id).subscribe(res => {
+    this.arrayTo = {}
     console.log(id)
     console.log(res)
     this.id_person = res.iD_person
-    this.lib_FirstName = res.firstName
 
+    this.lib_FirstName = res.firstName
+    this.arrayTo = res 
     return res
   }), (error: any) => {
     console.log(error)
