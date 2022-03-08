@@ -15,7 +15,7 @@
             <div class="form-group row">
               <button (click)="getTimeSheet()" class="btn btn-primary"><i class="fa fa-refresh" aria-hidden="true"></i></button>
               <button (click)="getTimeSheetbydate()" class="btn btn-primary"><i class="fa fa-plus"></i>Acceder</button>
-                   <div class="col-sm-8">
+                   <div class="col-sm-2">
                     <input formControlName="creatnow"  matInput name = creatnow ngModel="createNowDate"
                     type="date"     class="form-control"  id="date-input"  placeholder="creatnow" >
                      <mat-error *ngIf="creatnow?.invalid && creatnow?.touched"> heure debut est requis </mat-error>
@@ -25,10 +25,19 @@
         
            </div>
          </form>
+
+
+
+         
       </div>
     </div>
 
-    
+
+
+
+
+
+
     <div class="center">
       <table mat-table [dataSource]="data"  matSort class="mat-elevation-z8">    
            <!-- Name Column -->

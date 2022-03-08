@@ -8,6 +8,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { data } from 'jquery';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class RolesComponent implements OnInit {
   id : any
   id_role:any=''
   lib_role:string=''
+
+  roleToUpdate!: Role 
 
   exform = new FormGroup({
     libelle_Role: new FormControl('',Validators.required)
@@ -49,7 +52,6 @@ export class RolesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getrole()
-    
 
   
   }
@@ -129,9 +131,9 @@ deleteRole(id : any ){
 
 getRoleById(id : any ):any {
   this.RoleService.getroleById(id).subscribe(res => {
-    console.log(id)
-    console.log(res)
-    console.log(res.libelle_Role)
+    this.roleToUpdate = res
+    console.log(this.data)
+    console.log(this.roleToUpdate)
     this.id_role = res.iD_Role
     this.lib_role=res.libelle_Role
     return res
