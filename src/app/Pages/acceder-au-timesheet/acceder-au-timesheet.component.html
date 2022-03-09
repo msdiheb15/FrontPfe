@@ -72,6 +72,11 @@
           <th mat-header-cell *matHeaderCellDef> heure Fin </th>
           <td mat-cell *matCellDef="let element"> {{element.heure_fin}} </td>
         </ng-container>
+         <!-- Name Column -->
+         <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> status </th>
+          <td mat-cell *matCellDef="let element"  [className]="element.validation == true ? 'text-success' : 'text-danger'"> {{element.validation == true ? "Validé" : "En Attente"}} </td>
+        </ng-container>
         
             <!-- Name Column -->
             <ng-container matColumnDef="Action">

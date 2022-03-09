@@ -28,7 +28,7 @@ export class AccederAuTimesheetComponent implements OnInit {
  dataprojet :Projet[]=[];
  datatache : Tache[]=[];
  data :any=[];
-
+ statutache:any
 
 
 
@@ -83,6 +83,7 @@ get creatnow(){return this.exform.get('creatnow')}
     'discription',
     'heure_debut',
     'heure_fin',
+    'status',
    'Action',
   
   ];
@@ -126,7 +127,7 @@ get creatnow(){return this.exform.get('creatnow')}
 
 
   getTimeSheet(){
-    this.TimeSheetService.getTimeSheet('96006837-D34B-43C1-5B68-08DA002B04D1').subscribe((TimeSheet: any) => {
+    this.TimeSheetService.getTimeSheet('63D57BCA-4676-4FAF-9848-08D9FDD98EEA').subscribe((TimeSheet: any) => {
   
     this.data = TimeSheet;
      console.log(this.data)
@@ -154,7 +155,7 @@ get creatnow(){return this.exform.get('creatnow')}
   getTimeSheetbydate(){
     var createNowDate = ((document.getElementById("date-input") as HTMLInputElement).value);
     console.log(this.GetFormatedDate(createNowDate))
-    this.TimeSheetService.getTimeSheetbyDate(this.GetFormatedDate(createNowDate), "96006837-D34B-43C1-5B68-08DA002B04D1").subscribe((TimeSheet: any) => {
+    this.TimeSheetService.getTimeSheetbyDate(this.GetFormatedDate(createNowDate), "63D57BCA-4676-4FAF-9848-08D9FDD98EEA").subscribe((TimeSheet: any) => {
   
     this.data = TimeSheet;
      console.log(this.data)
@@ -195,9 +196,13 @@ get creatnow(){return this.exform.get('creatnow')}
         this.getTimeSheet();
         
       });
+
+
+
+      
     
     }
-
+   
 
 
 

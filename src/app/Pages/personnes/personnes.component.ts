@@ -45,7 +45,7 @@ export class PersonnesComponent implements OnInit {
     adresse : new FormControl('', Validators.required),
     fk_serviceDepartment: new FormControl('',Validators.required),
     fk_Role : new FormControl('',Validators.required),
-    Activation : new FormControl('')
+    Activation : new FormControl(true)
     
   })
 
