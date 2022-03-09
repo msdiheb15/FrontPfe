@@ -106,7 +106,14 @@ export class PersonnesComponent implements OnInit {
     //dataSource = new MatTableDataSource(this.Mat_Array.push());
 
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    console.log(filterValue)
+    this.data = this.data.filter((el : any ) => {
+      
+      return ((el.firstName.toLowerCase().includes(filterValue.toLowerCase()  )) || (el.lastName.toLowerCase().includes(filterValue.toLowerCase())));
+    })
+    if (filterValue == "") {
+      this.data = this.getPerson()
+    } 
   }
 
 
@@ -165,7 +172,7 @@ getPerson(){
 
     })
     this.exform.reset();
-    return this.data
+    return this.data.reverse()
 
 
      }, (error: any) => {

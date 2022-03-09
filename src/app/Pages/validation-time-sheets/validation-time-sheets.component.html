@@ -54,7 +54,7 @@
 
 
     <div class="center">
-      <table mat-table [dataSource]="data"  matSort class="mat-elevation-z8">    
+      <table mat-table [dataSource]="data.reverse()"  matSort class="mat-elevation-z8">    
            <!-- Name Column -->
            <ng-container matColumnDef="createdNow">
             <th mat-header-cell *matHeaderCellDef> Creer le </th>
