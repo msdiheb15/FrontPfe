@@ -40,7 +40,7 @@ export class AccederAuTimesheetComponent implements OnInit {
   description : new FormControl('',Validators.required),
   fk_Projet : new FormControl('',Validators.required),
   fk_Tache : new FormControl('',Validators.required),
-  fK_Person : new FormControl('8989F7F3-C846-4DC6-0FEF-08D9FE028299'),
+  fK_Person : new FormControl('96006837-D34B-43C1-5B68-08DA002B04D1'),
   validation : new FormControl(false),
   createdNow: new FormControl(formatDate(new Date(), 'dd/MM/yyyy', 'en')),
 })
@@ -126,7 +126,7 @@ get creatnow(){return this.exform.get('creatnow')}
 
 
   getTimeSheet(){
-    this.TimeSheetService.getTimeSheet('8989F7F3-C846-4DC6-0FEF-08D9FE028299').subscribe((TimeSheet: any) => {
+    this.TimeSheetService.getTimeSheet('96006837-D34B-43C1-5B68-08DA002B04D1').subscribe((TimeSheet: any) => {
   
     this.data = TimeSheet;
      console.log(this.data)
@@ -154,7 +154,7 @@ get creatnow(){return this.exform.get('creatnow')}
   getTimeSheetbydate(){
     var createNowDate = ((document.getElementById("date-input") as HTMLInputElement).value);
     console.log(this.GetFormatedDate(createNowDate))
-    this.TimeSheetService.getTimeSheetbyDate(this.GetFormatedDate(createNowDate), "8989F7F3-C846-4DC6-0FEF-08D9FE028299").subscribe((TimeSheet: any) => {
+    this.TimeSheetService.getTimeSheetbyDate(this.GetFormatedDate(createNowDate), "96006837-D34B-43C1-5B68-08DA002B04D1").subscribe((TimeSheet: any) => {
   
     this.data = TimeSheet;
      console.log(this.data)

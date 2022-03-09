@@ -129,14 +129,16 @@
                     <div class="form-group row">
                       <label  class="col-sm-4 col-form-label">Nom Tâche</label>
                       <div class="col-sm-7">
-                        <input formControlName="nom_tache" matInput name="Nom_tache" [(ngModel)]="model.Nom_tache" type="text"  class="form-control"  placeholder="Nom Tâche">
+                        <input formControlName="nom_tache" matInput name="Nom_tache" [(ngModel)]="model.Nom_tache"
+                         type="text"  class="form-control"  placeholder="Nom Tâche" [value]="arrayTo.nom_tache">
                         <mat-error *ngIf="nom_tache?.invalid && nom_tache?.touched">Tache est requis </mat-error>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label  class="col-sm-4 col-form-label">Description</label>
                       <div class="col-sm-7">
-                        <input formControlName="discription" matInput name="discription" [(ngModel)]="model.discription" type="text"  class="form-control"  placeholder="Description">
+                        <input formControlName="discription" matInput name="discription" [(ngModel)]="model.discription" 
+                        type="text"  class="form-control"  placeholder="Description" [value]="arrayTo.discription">
                         <mat-error *ngIf="discription?.invalid && discription?.touched">Description est requis </mat-error>
                       </div>
                     </div>

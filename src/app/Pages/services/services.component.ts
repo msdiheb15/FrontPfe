@@ -21,6 +21,7 @@ export class ServicesComponent implements OnInit {
   id : any
   id_service:any=''
   lib_service:string=''
+  arrayTo : any = {}
 
   exform = new FormGroup({
     libelle_service: new FormControl('',Validators.required)
@@ -98,11 +99,14 @@ getService(){
 
 getServiceById(id : any ):any {
   this.S.getServiceById(id).subscribe(res => {
+    this.arrayTo = {}
     console.log(id)
     console.log(res)
     console.log(res.libelle_service)
     this.id_service = res.iD_ServiceDepartment
     this.lib_service=res.libelle_service
+    this.arrayTo = res 
+
     return res
   }), (error: any) => {
     console.log(error)

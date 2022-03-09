@@ -28,6 +28,7 @@ export class ProjectsComponent implements OnInit {
   data: Projet[]=[];
   id_projet:any=''
   lib_projet:string=''
+  arrayTo : any = {}
 
   exform = new FormGroup({
     nom_Client : new FormControl('', Validators.required),
@@ -147,10 +148,12 @@ export class ProjectsComponent implements OnInit {
 
   getprojetById(id : any ):any {
   this.ProjetService.getprojetById(id).subscribe(res => {
+    this.arrayTo = {}
     console.log(id)
     console.log(res)
     this.id_projet = res.iD_Projet
     this.lib_projet = res.nom_Projet
+    this.arrayTo = res 
 
     return res
   }), (error: any) => {

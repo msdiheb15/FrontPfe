@@ -25,6 +25,7 @@ export class TacheComponent implements OnInit {
   dataService :ServiceDepartment[]=[];
   id_tache:any=''
   lib_tache:string=''
+  arrayTo : any = {}
 
   exform = new FormGroup({
     nom_tache: new FormControl('', Validators.required),
@@ -113,10 +114,12 @@ export class TacheComponent implements OnInit {
   }
   getTacheById(id : any ):any {
     this.TacheService.getTacheById(id).subscribe(res => {
+      this.arrayTo = {}
       console.log(id)
       console.log(res)
       this.id_tache = res.iD_Taches
       this.lib_tache = res.nom_tache
+      this.arrayTo = res 
   
       return res
     }), (error: any) => {

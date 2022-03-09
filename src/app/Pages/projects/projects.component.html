@@ -193,7 +193,7 @@
               <label  class="col-sm-4 col-form-label">Service  :</label>
               <div class="col-sm-7">
                 <select name = ServiceDepartment formControlName="fk_serviceDepartment"
-                 type="text" class="form-control"  >
+                 type="text" class="form-control" >
                  <option >Choisir un service </option>
                  <option *ngFor="let serviceDepartment of dataService" [value]="serviceDepartment.iD_ServiceDepartment">{{serviceDepartment.libelle_service}}</option>
                 </select>
@@ -203,14 +203,14 @@
                   <label  class="col-sm-4 col-form-label">Nom Projet :</label>
                   <div class="col-sm-7">
                     <input formControlName="nom_Projet"  matInput name = nom_Projet
-                     type="text" class="form-control"  placeholder="Nom Projet">
+                     type="text" class="form-control"  placeholder="Nom Projet" [value]="arrayTo.nom_Projet">
                     <mat-error *ngIf="nom_Projet?.invalid && nom_Projet?.touched">Nom Projet est requis </mat-error>
                   </div>
                 </div>  <div class="form-group row">
                   <label  class="col-sm-4 col-form-label">Nom Client :</label>
                   <div class="col-sm-7">
                     <input formControlName="nom_Client"  matInput name = nom_Client
-                    type="text" type="text"  class="form-control"  placeholder="Nom Client">
+                    type="text" type="text"  class="form-control"  placeholder="Nom Client" [value]="arrayTo.nom_Client">
                     <mat-error *ngIf="nom_Client?.invalid && nom_Client?.touched"> Le nom du client est requis </mat-error>
                   </div>
                 </div>
@@ -218,7 +218,7 @@
                 <label  class="col-sm-4 col-form-label">Etat projet :</label>
                 <div class="col-sm-7">
                   <input formControlName="etat_projet"  matInput name = etat_projet
-                  type="text" type="text"  class="form-control"  placeholder="etat_projet">
+                  type="text" type="text"  class="form-control"  placeholder="etat_projet" [value]="arrayTo.etat_projet">
                   <mat-error *ngIf="etat_projet?.invalid && etat_projet?.touched"> L'etat projet est requis </mat-error>
                 </div>
               </div>
@@ -226,7 +226,7 @@
                 <label  class="col-sm-4 col-form-label">description projet :</label>
                 <div class="col-sm-7">
                   <input formControlName="description_projet"  matInput name = description
-                  type="text" type="text"  class="form-control"  placeholder="description_projet">
+                  type="text" type="text"  class="form-control"  placeholder="description_projet" [value]="arrayTo.description_projet">
                   <mat-error *ngIf="description_projet?.invalid && description_projet?.touched"> La description est requis </mat-error>
                 </div>
               </div>
@@ -234,7 +234,7 @@
                 <label  class="col-sm-4 col-form-label">Durée Estimée  :</label>
                 <div class="col-sm-7">
                   <input formControlName="debut_estime" matInput name = Durée_Réelle
-                   type="date" class="form-control"  >
+                   type="date" class="form-control" [value]="arrayTo.debut_estime" >
                   <mat-error *ngIf="debut_estime?.invalid && debut_estime?.touched"> Veuillez entrer votre durée estimée </mat-error>
                 </div>
               </div>
@@ -242,7 +242,7 @@
                 <label  class="col-sm-4 col-form-label">Durée Réelle  :</label>
                 <div class="col-sm-7">
                   <input formControlName="fin_estime" matInput name = Durée_Réelle
-                   type="date" class="form-control"  >
+                   type="date" class="form-control" [value]="arrayTo.fin_estime" >
                   <mat-error *ngIf="fin_estime?.invalid && fin_estime?.touched">  Veuillez entrer votre durée réelle </mat-error>
                 </div>
               </div>
@@ -250,7 +250,7 @@
                   <label  class="col-sm-4 col-form-label">Durée Estimée (Par Jours) :</label>
                   <div class="col-sm-7">
                     <input formControlName="debut_estimej" matInput name = Durée_Réelle
-                     type="number" class="form-control"  >
+                     type="number" class="form-control" [value]="arrayTo.debut_estimej" >
                     <mat-error *ngIf="debut_estimej?.invalid && debut_estimej?.touched"> Veuillez entrer votre durée estimée </mat-error>
                   </div>
                 </div>
@@ -258,7 +258,7 @@
                   <label  class="col-sm-4 col-form-label">Durée Réelle (Par Jours) :</label>
                   <div class="col-sm-7">
                     <input formControlName="fin_estimej" matInput name = Durée_Réelle
-                     type="number" class="form-control"  >
+                     type="number" class="form-control" [value]="arrayTo.fin_estimej" >
                     <mat-error *ngIf="fin_estimej?.invalid && fin_estimej?.touched">  Veuillez entrer votre durée réelle </mat-error>
                   </div>
                 </div>
